@@ -8,7 +8,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "components-library": ["node_modules/components-library"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "components-library": ["node_modules/components-library/dist/components-library"]
     },
 
     /* Bundler mode */

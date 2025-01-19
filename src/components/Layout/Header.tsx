@@ -1,7 +1,18 @@
-import {Navbar} from 'components-library'
+import { Box } from "components-library"
 
 export const Header = () => {
     return (
-        <Navbar></Navbar>
+        // <Navbar logo={''} links={[
+        //     {
+        //       href: '#',
+        //       name: 'Home'
+        //     },
+        //     {
+        //       href: '#',
+        //       name: 'About'
+        //     }
+        //   ]}>
+            <Box>NAVBAR</Box>
+        // </Navbar>
     )
 }
