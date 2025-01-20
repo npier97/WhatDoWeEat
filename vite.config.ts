@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, 'src/components'),
-      'components-library': path.resolve(__dirname, 'node_modules/components-library/dist/components-library'),
+      'components-library': path.resolve(__dirname, 'node_modules/components-library'),
     },
   },
   plugins: [

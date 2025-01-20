@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       components-library:
-        specifier: github:npier97/Components-Library#main
-        version: git+https://git@github.com:npier97/Components-Library.git#e2043f8c5e34b527651ea493c1c54f6d70e786f2
+        specifier: github:npier97/Components-Library
+        version: git+https://git@github.com:npier97/Components-Library.git#c2065c447c1ca751fc79186fa5525277ad06196e
       react:
-        specifier: ^19.0.0
-        version: 19.0.0
+        specifier: ^18.2.0
+        version: 18.3.1
       react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
+        specifier: ^18.2.0
+        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
@@ -35,7 +35,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.3.4(vite@6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))
+        version: 4.3.4(vite@6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
@@ -68,10 +68,10 @@ importers:
         version: 8.20.0(eslint@9.18.0(jiti@1.21.7))(typescript@5.6.3)
       vite:
         specifier: ^6.0.5
-        version: 6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
+        version: 6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
       vite-plugin-svgr:
         specifier: ^4.3.0
-        version: 4.3.0(rollup@4.31.0)(typescript@5.6.3)(vite@6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))
+        version: 4.3.0(rollup@4.31.0)(typescript@5.6.3)(vite@6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))
 
 packages:
 
@@ -834,8 +834,8 @@ packages:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
 
-  components-library@git+https://git@github.com:npier97/Components-Library.git#e2043f8c5e34b527651ea493c1c54f6d70e786f2:
-    resolution: {commit: e2043f8c5e34b527651ea493c1c54f6d70e786f2, repo: git@github.com:npier97/Components-Library.git, type: git}
+  components-library@git+https://git@github.com:npier97/Components-Library.git#c2065c447c1ca751fc79186fa5525277ad06196e:
+    resolution: {commit: c2065c447c1ca751fc79186fa5525277ad06196e, repo: git@github.com:npier97/Components-Library.git, type: git}
     version: 0.0.0
 
   concat-map@0.0.1:
@@ -1922,8 +1922,8 @@ packages:
     peerDependencies:
       vite: '>=2.6.0'
 
-  vite@6.0.7:
-    resolution: {integrity: sha512-RDt8r/7qx9940f8FcOIAH9PTViRrghKaK2K1jY3RaAURrEUbm9Du1mJ72G+jlhtG3WwodnfzY8ORQZbBavZEAQ==}
+  vite@6.0.9:
+    resolution: {integrity: sha512-MSgUxHcaXLtnBPktkbUSoQUANApKYuxZ6DrbVENlIorbhL2dZydTLaZ01tjUoE3szeFzlFk9ANOKk0xurh4MKA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -2560,14 +2560,14 @@ snapshots:
       '@typescript-eslint/types': 8.20.0
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-react@4.3.4(vite@6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))':
+  '@vitejs/plugin-react@4.3.4(vite@6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.0)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.0)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
+      vite: 6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2758,12 +2758,12 @@ snapshots:
 
   commander@7.2.0: {}
 
-  components-library@git+https://git@github.com:npier97/Components-Library.git#e2043f8c5e34b527651ea493c1c54f6d70e786f2:
+  components-library@git+https://git@github.com:npier97/Components-Library.git#c2065c447c1ca751fc79186fa5525277ad06196e:
     dependencies:
       class-variance-authority: 0.7.1
       clsx: 2.1.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
       tailwind-merge: 2.6.0
 
   concat-map@0.0.1: {}
@@ -4081,18 +4081,18 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite-plugin-svgr@4.3.0(rollup@4.31.0)(typescript@5.6.3)(vite@6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)):
+  vite-plugin-svgr@4.3.0(rollup@4.31.0)(typescript@5.6.3)(vite@6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)):
     dependencies:
       '@rollup/pluginutils': 5.1.4(rollup@4.31.0)
       '@svgr/core': 8.1.0(typescript@5.6.3)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.6.3))
-      vite: 6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
+      vite: 6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - typescript
 
-  vite@6.0.7(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0):
+  vite@6.0.9(@types/node@22.10.7)(jiti@1.21.7)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.1

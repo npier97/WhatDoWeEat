@@ -10,7 +10,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "components-library": ["node_modules/components-library/dist/components-library"]
+      "components-library": ["node_modules/components-library"]
     },
 
     /* Bundler mode */
