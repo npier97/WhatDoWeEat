@@ -1,4 +1,4 @@
-import { Box, Navbar } from "components-library";
+import { Navbar } from "components-library";
 import Logo from "@/assets/logo.png";
 
 export const Header = () => {
@@ -16,10 +16,9 @@ export const Header = () => {
         },
       ]}
       size="md"
-      variant="transparent"
       fixed={true}
-    >
-      <Box>Navbar</Box>
-    </Navbar>
+      shadowOnScroll={true}
+      className="bg-blue-500 text-black"
+    />
   );
 };
