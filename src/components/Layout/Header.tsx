@@ -1,24 +1,25 @@
 import { Navbar } from "components-library";
 import Logo from "@/assets/logo.png";
 
-export const Header = () => {
-  return (
-    <Navbar
-      logo={<img src={Logo} alt="Logo" width={"50px"} />}
-      links={[
-        {
-          href: "#",
-          name: "Home",
-        },
-        {
-          href: "#",
-          name: "About",
-        },
-      ]}
-      size="md"
-      fixed={true}
-      shadowOnScroll={true}
-      className="bg-blue-500 text-black"
-    />
-  );
-};
+const Header = () => (
+  <Navbar
+    logo={<img src={Logo} alt="Logo" width={"50px"} />}
+    brand="WhatDoWeEat"
+    links={[
+      {
+        href: "#",
+        name: "Home",
+      },
+      {
+        href: "#",
+        name: "Recipes",
+      },
+    ]}
+    size="md"
+    fixed={true}
+    shadowOnScroll={true}
+    className="bg-white text-green-600"
+  />
+);
+
+export default Header;
