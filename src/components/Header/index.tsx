@@ -1,5 +1,5 @@
 import { Navbar } from "components-library";
-import Logo from "@/assets/logo.png";
+import Logo from "../../assets/logo.png";
 
 const Header = () => (
   <Navbar
@@ -7,11 +7,11 @@ const Header = () => (
     brand="WhatDoWeEat"
     links={[
       {
-        href: "#",
+        href: "/",
         name: "Home",
       },
       {
-        href: "#",
+        href: "/recipes",
         name: "Recipes",
       },
     ]}
@@ -19,6 +19,7 @@ const Header = () => (
     fixed={true}
     shadowOnScroll={true}
     className="bg-white text-green-600"
+    data-testid="navbar"
   />
 );
 

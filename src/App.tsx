@@ -1,6 +1,6 @@
 import { Box, Text } from "components-library";
-import Footer from "@components/Footer";
-import Header from "@components/Header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import "components-library";
 
 const App = () => (

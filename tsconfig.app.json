@@ -9,9 +9,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@assets": ["src/assets"],
       "@components/*": ["src/components/*"],
       "components-library": ["node_modules/components-library"]
     },
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
