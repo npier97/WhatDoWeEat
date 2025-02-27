@@ -19,8 +19,8 @@ describe("Navigation bar", () => {
         name: /recipes/i,
       });
 
-      expect(homeLink).toBeTruthy();
-      expect(recipesLink).toBeTruthy();
+      expect(homeLink).toBeInTheDocument();
+      expect(recipesLink).toBeInTheDocument();
     });
     it("should have the correct href attributes", () => {
       const navbar = screen.getByTestId("navbar");

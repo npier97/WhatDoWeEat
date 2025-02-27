@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
-    "components-library": "github:npier97/Components-Library#v0.0.3",
+    "components-library": "github:npier97/Components-Library#v0.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
