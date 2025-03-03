@@ -5,22 +5,68 @@ import {
   HeroInput,
   HeroSubtitle,
   HeroTitle,
+  InputContainer,
+  InputSpan,
 } from "./components";
+import { useState } from "react";
+import { preventSpecialCharacters } from "../../utils";
 
-const Hero = () => (
-  <HeroContainer>
-    <HeroTitle>What&apos;s In Your Fridge?</HeroTitle>
-    <HeroSubtitle>Unleash culinary creativity with what you have!</HeroSubtitle>
+const Hero = () => {
+  const [inputValue, setInputValue] = useState<string>("");
+  const [inputTags, setInputTags] = useState<string[]>([]);
+  const [ingredients, setIngredients] = useState<string[]>([]);
 
-    <Box className="w-full flex justify-center xs:flex-col">
-      <HeroInput
-        name="text"
-        type="text"
-        placeholder="Type ingredients and press Discover recipes"
-      />
-      <HeroButton>Discover recipes</HeroButton>
-    </Box>
-  </HeroContainer>
-);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    preventSpecialCharacters(event);
+
+    if (event.code === "Space" || event.code === "Enter") {
+      event.preventDefault();
+
+      const trimmedValue = inputValue.trim();
+      if (!trimmedValue || inputTags.includes(trimmedValue)) return;
+
+      setInputTags((prevTags) => [...prevTags, trimmedValue]);
+      setInputValue("");
+    }
+  };
+
+  const handleClick = () => {
+    const newItems = inputTags.filter((item) => !ingredients.includes(item));
+
+    if (!inputValue.trim() && !inputTags) return;
+
+    setIngredients([...ingredients, ...newItems]);
+    setInputTags([]);
+  };
+
+  // useEffect(() => {
+  //   console.log("Updated tags:", inputTags);
+  //   console.log("Updated ingredients:", ingredients);
+  // }, [inputTags, ingredients]);
+
+  return (
+    <HeroContainer>
+      <HeroTitle>What&apos;s In Your Fridge?</HeroTitle>
+      <HeroSubtitle>
+        Unleash culinary creativity with what you have!
+      </HeroSubtitle>
+      <Box className="w-full flex items-center justify-center p-8">
+        <InputContainer>
+          <HeroInput
+            name="text"
+            type="text"
+            placeholder="Type ingredients..."
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          {inputTags.map((tag: string, index) => (
+            <InputSpan key={`${tag}-${index}`}>{tag}</InputSpan>
+          ))}
+        </InputContainer>
+        <HeroButton onClick={handleClick}>Discover recipes</HeroButton>
+      </Box>
+    </HeroContainer>
+  );
+};
 
 export default Hero;
