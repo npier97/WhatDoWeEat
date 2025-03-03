@@ -33,7 +33,7 @@ const Hero = () => {
   const handleClick = () => {
     const newItems = inputTags.filter((item) => !ingredients.includes(item));
 
-    if (!inputValue.trim() && !inputTags) return;
+    if (!inputValue.trim() && inputTags.length === 0) return;
 
     setIngredients([...ingredients, ...newItems]);
     setInputTags([]);
@@ -55,7 +55,8 @@ const Hero = () => {
           <HeroInput
             name="text"
             type="text"
-            placeholder="Type ingredients..."
+            value={inputValue}
+            placeholder="Type ingredient and press Space"
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
           />
