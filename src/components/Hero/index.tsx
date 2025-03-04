@@ -5,7 +5,6 @@ import {
   HeroInput,
   HeroSubtitle,
   HeroTitle,
-  InputContainer,
 } from "./components";
 import { useState } from "react";
 import { preventSpecialCharacters } from "@utils/string";
@@ -45,20 +44,18 @@ const Hero = () => {
       <HeroSubtitle>
         Unleash culinary creativity with what you have!
       </HeroSubtitle>
-      <Box className="w-full flex items-center justify-center p-8">
-        <InputContainer>
-          <HeroInput
-            name="text"
-            type="text"
-            value={inputValue}
-            placeholder="Type ingredient and press Space"
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
-        </InputContainer>
+      <Box className="w-full mb-4 flex items-center justify-center">
+        <HeroInput
+          name="text"
+          type="text"
+          value={inputValue}
+          placeholder="Type an ingredient and press Enter or Space"
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
         <HeroButton onClick={handleClick}>Discover recipes</HeroButton>
       </Box>
+      <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
     </HeroContainer>
   );
 };

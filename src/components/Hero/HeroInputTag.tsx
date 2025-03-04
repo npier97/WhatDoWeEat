@@ -1,3 +1,4 @@
+import { Box } from "components-library";
 import { InputSpan } from "./components";
 import DeleteIcon from "@icons/DeleteIcon";
 
@@ -13,26 +14,16 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
   };
 
   return (
-    <>
-      {inputTags
-        .slice()
-        .reverse() /* necessary as flex-row-reverse is used on its container */
-        .map((tag: string) => (
-          <>
-            <InputSpan
-              key={`${tag}`}
-              className="text-xs"
-              onClick={() => handleInputTagClick(tag)}
-            >
-              {tag}
-              <DeleteIcon
-                key={`${tag}-icon`}
-                className="text-green-600 text-xs"
-              />
-            </InputSpan>
-          </>
-        ))}
-    </>
+    <Box id="tags" className="max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2">
+      {inputTags.map((tag: string) => (
+        <>
+          <InputSpan key={`${tag}`} onClick={() => handleInputTagClick(tag)}>
+            {tag}
+            <DeleteIcon key={`${tag}-icon`} className="text-green-600" />
+          </InputSpan>
+        </>
+      ))}
+    </Box>
   );
 };
 
