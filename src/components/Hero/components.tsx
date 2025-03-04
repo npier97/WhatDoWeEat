@@ -1,5 +1,5 @@
 import { Box, Text, Input, Button } from "components-library";
-import KitchenBackground from "../../assets/kitchen.png";
+import KitchenBackground from "@assets/kitchen.png";
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
   <Box

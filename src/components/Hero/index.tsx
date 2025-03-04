@@ -9,7 +9,8 @@ import {
   InputSpan,
 } from "./components";
 import { useState } from "react";
-import { preventSpecialCharacters } from "../../utils";
+import { preventSpecialCharacters } from "@utils/string";
+import DeleteIcon from "@icons/DeleteIcon";
 
 const Hero = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -61,7 +62,10 @@ const Hero = () => {
             onKeyDown={handleKeyDown}
           />
           {inputTags.map((tag: string, index) => (
-            <InputSpan key={`${tag}-${index}`}>{tag}</InputSpan>
+            <>
+              <InputSpan key={`${tag}-${index}`}>{tag}</InputSpan>
+              <DeleteIcon size={5} className="fill-black" />
+            </>
           ))}
         </InputContainer>
         <HeroButton onClick={handleClick}>Discover recipes</HeroButton>

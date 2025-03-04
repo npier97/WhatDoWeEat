@@ -1,4 +1,3 @@
-// utils.ts
 export const isLetterOnly = (value: string) => /^[a-zA-Z\s]*$/.test(value);
 
 

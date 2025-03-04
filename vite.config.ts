@@ -8,9 +8,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@components': path.resolve(__dirname, 'src/components'),
+      '@': path.resolve(__dirname, './src'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@icons': path.resolve(__dirname, './src/icons'),
+      '@utils': path.resolve(__dirname, './src/utils'),
       'components-library': path.resolve(__dirname, 'node_modules/components-library'),
     },
   },
