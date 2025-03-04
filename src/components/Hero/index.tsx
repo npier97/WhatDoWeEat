@@ -6,11 +6,10 @@ import {
   HeroSubtitle,
   HeroTitle,
   InputContainer,
-  InputSpan,
 } from "./components";
 import { useState } from "react";
 import { preventSpecialCharacters } from "@utils/string";
-import DeleteIcon from "@icons/DeleteIcon";
+import HeroInputTag from "./HeroInputTag";
 
 const Hero = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -40,11 +39,6 @@ const Hero = () => {
     setInputTags([]);
   };
 
-  // useEffect(() => {
-  //   console.log("Updated tags:", inputTags);
-  //   console.log("Updated ingredients:", ingredients);
-  // }, [inputTags, ingredients]);
-
   return (
     <HeroContainer>
       <HeroTitle>What&apos;s In Your Fridge?</HeroTitle>
@@ -61,12 +55,7 @@ const Hero = () => {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          {inputTags.map((tag: string, index) => (
-            <>
-              <InputSpan key={`${tag}-${index}`}>{tag}</InputSpan>
-              <DeleteIcon size={5} className="fill-black" />
-            </>
-          ))}
+          <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
         </InputContainer>
         <HeroButton onClick={handleClick}>Discover recipes</HeroButton>
       </Box>

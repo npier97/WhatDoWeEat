@@ -44,6 +44,6 @@ export const InputContainer = ({ children }: { children: React.ReactNode }) => (
 export const InputSpan = (props: React.ComponentProps<"span">) => (
   <span
     {...props}
-    className="p-2 flex items-center bg-green-200 text-green-600 rounded-2xl"
+    className="p-2 flex items-center bg-green-200 text-green-600 rounded-2xl cursor-pointer"
   />
 );

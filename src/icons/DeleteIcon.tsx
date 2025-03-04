@@ -1,15 +1,16 @@
 interface DeleteIconProps {
   className?: string;
-  size?: number;
+  width?: number;
 }
 
-const DeleteIcon = ({ className, size }: DeleteIconProps) => (
+const DeleteIcon = ({ className, width = 20 }: DeleteIconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
-    className={`w-${size} h-${size} ${className}`}
+    width={`${width}px`}
+    className={className}
   >
     <path
       strokeLinecap="round"
