@@ -7,10 +7,17 @@ import {
   HeroTitle,
 } from "./components";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { preventSpecialCharacters } from "@utils/string";
+import { fetchData } from "@/utils/fetch";
 import HeroInputTag from "./HeroInputTag";
+import { User } from "@/types/User";
+import { setError, setLoading, setUsers } from "./state/slice";
+import { RootState } from "@/store";
 
 const Hero = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state: RootState) => state.hero.loading);
   const [inputValue, setInputValue] = useState<string>("");
   const [inputTags, setInputTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -36,6 +43,23 @@ const Hero = () => {
 
     setIngredients([...ingredients, ...newItems]);
     setInputTags([]);
+    fetchRecipes();
+  };
+
+  const fetchRecipes = async () => {
+    dispatch(setLoading(true));
+    try {
+      const data = await fetchData<User[]>(
+        "https://reqres.in/api/users?page=2"
+      );
+      dispatch(setUsers(data));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      console.log(error);
+      dispatch(setError(""));
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   return (
@@ -56,6 +80,7 @@ const Hero = () => {
         <HeroButton onClick={handleClick}>Discover recipes</HeroButton>
       </Box>
       <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
+      {loading && <p>Loading...</p>}
     </HeroContainer>
   );
 };

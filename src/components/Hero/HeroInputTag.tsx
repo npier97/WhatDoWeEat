@@ -17,7 +17,7 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
     <Box id="tags" className="max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2">
       {inputTags.map((tag: string) => (
         <>
-          <InputSpan key={`${tag}`} onClick={() => handleInputTagClick(tag)}>
+          <InputSpan key={tag} onClick={() => handleInputTagClick(tag)}>
             {tag}
             <DeleteIcon key={`${tag}-icon`} className="text-green-600" />
           </InputSpan>

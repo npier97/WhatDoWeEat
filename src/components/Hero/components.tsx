@@ -3,7 +3,7 @@ import KitchenBackground from "@assets/kitchen.png";
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
   <Box
-    className="pt-40 flex flex-col items-center justify-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed"
+    className="pt-40 pb-20 flex flex-col items-center justify-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed"
     style={{ backgroundImage: `url(${KitchenBackground})` }}
     data-testid="hero"
   >
