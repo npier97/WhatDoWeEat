@@ -76,8 +76,11 @@ const Hero = () => {
           placeholder="Type an ingredient and press Enter or Space"
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
+          data-testid="hero-input"
         />
-        <HeroButton onClick={handleClick}>Discover recipes</HeroButton>
+        <HeroButton onClick={handleClick} data-testid="hero-button">
+          Discover recipes
+        </HeroButton>
       </Box>
       <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
       {loading && <p>Loading...</p>}

@@ -4,6 +4,7 @@ import Hero from "./index";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import heroReducer from "@components/Hero/state/slice";
+import { userEvent } from "@testing-library/user-event";
 
 const testStore = configureStore({
   reducer: {
@@ -13,6 +14,16 @@ const testStore = configureStore({
     hero: { loading: false, error: "", users: [] },
   },
 });
+
+const setNewTag = async () => {
+  const hero = screen.getByTestId("hero");
+  const heroInput = within(hero).getByTestId("hero-input");
+
+  await userEvent.type(heroInput, "apple");
+  await userEvent.keyboard("[Enter]");
+
+  return heroInput;
+};
 
 describe("Hero", () => {
   beforeEach(() => {
@@ -36,5 +47,35 @@ describe("Hero", () => {
     expect(h2Element.textContent).toEqual(
       "Unleash culinary creativity with what you have!"
     );
+  });
+  describe("tags creation and deletion", () => {
+    it("should create a tag on pressing Enter key", async () => {
+      await setNewTag();
+      const inputSpan = screen.getByTestId("input-span");
+
+      expect(inputSpan).toBeInTheDocument();
+      expect(inputSpan.textContent).toEqual("apple");
+    });
+    it("should delete the tag when the delete icon is clicked", async () => {
+      await setNewTag();
+      const inputSpan = screen.getByTestId("input-span");
+      const deleteIcon = within(inputSpan).getByTestId("delete-icon");
+
+      await userEvent.click(deleteIcon);
+
+      const inputSpanContainer = screen.getByTestId("input-span-container");
+
+      expect(inputSpanContainer.children.length).toBe(0);
+    });
+    it("should delete the tags when Discover Recipes button is clicked", async () => {
+      const heroButton = screen.getByTestId("hero-button");
+
+      await setNewTag();
+      await userEvent.click(heroButton);
+
+      const inputSpanContainer = screen.getByTestId("input-span-container");
+
+      expect(inputSpanContainer.children.length).toBe(0);
+    });
   });
 });

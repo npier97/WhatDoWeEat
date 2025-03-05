@@ -11,6 +11,7 @@ const DeleteIcon = ({ className, width = 20 }: DeleteIconProps) => (
     stroke="currentColor"
     width={`${width}px`}
     className={className}
+    data-testid="delete-icon"
   >
     <path
       strokeLinecap="round"
