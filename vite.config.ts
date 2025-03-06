@@ -2,10 +2,16 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    'process.env': process.env,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -21,6 +21,7 @@ const Hero = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [inputTags, setInputTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
+  const apiKey = process.env.SPOONACULAR_API_KEY;
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
@@ -50,8 +51,9 @@ const Hero = () => {
     dispatch(setLoading(true));
     try {
       const data = await fetchData<User[]>(
-        "https://reqres.in/api/users?page=2"
+        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=apples&number=2`
       );
+      console.log(data);
       dispatch(setUsers(data));
     } catch (error) {
       console.error("Error fetching data:", error);
