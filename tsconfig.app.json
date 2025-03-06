@@ -11,7 +11,10 @@
       "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@icons/*": ["src/icons/*"],
+      "@state/*": ["src/components/state/*"],
+      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "components-library": ["node_modules/components-library"]
     },

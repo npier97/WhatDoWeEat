@@ -22,7 +22,7 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
       {inputTags.map((tag: string) => (
         <>
           <InputSpan
-            key={tag}
+            key={`${tag}`}
             onClick={() => handleInputTagClick(tag)}
             data-testid="input-span"
           >

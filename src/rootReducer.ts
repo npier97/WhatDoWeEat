@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import heroReducer from "@components/Hero/state/slice";
+import recipeReducer from "@state/recipeSlice";
 
 const rootReducer = combineReducers({
-    hero: heroReducer
+    recipe: recipeReducer
 });
 
 export default rootReducer;

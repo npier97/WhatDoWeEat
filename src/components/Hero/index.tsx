@@ -7,21 +7,19 @@ import {
   HeroTitle,
 } from "./components";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { preventSpecialCharacters } from "@utils/string";
-import { fetchData } from "@/utils/fetch";
 import HeroInputTag from "./HeroInputTag";
-import { Recipe } from "@/types/Recipe";
-import { setError, setLoading, setRecipes } from "./state/slice";
 import { RootState } from "@/store";
+import { useFetchRecipes } from "@hooks/useFetchRecipes";
 
 const Hero = () => {
-  const dispatch = useDispatch();
-  const loading = useSelector((state: RootState) => state.hero.loading);
+  const loading = useSelector((state: RootState) => state.recipe.loading);
   const [inputValue, setInputValue] = useState<string>("");
   const [inputTags, setInputTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const apiKey = process.env.SPOONACULAR_API_KEY;
+
+  const { fetchRecipes } = useFetchRecipes();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
@@ -43,24 +41,6 @@ const Hero = () => {
 
     setIngredients((prevIngredients) => [...prevIngredients, ...newItems]);
     setInputTags([]);
-  };
-
-  const fetchRecipes = async (queryParams: string) => {
-    dispatch(setLoading(true));
-    try {
-      //TODO: add functionality to increment or decrement the number of recipes
-      const data = await fetchData<Recipe[]>(
-        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${queryParams}&number=3`
-      );
-      console.log(data);
-      dispatch(setRecipes(data));
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      console.log(error);
-      dispatch(setError(""));
-    } finally {
-      dispatch(setLoading(false));
-    }
   };
 
   useEffect(() => {

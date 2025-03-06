@@ -3,15 +3,12 @@ import { describe, it } from "vitest";
 import Hero from "./index";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import heroReducer from "@components/Hero/state/slice";
+import recipeReducer from "@components/state/recipeSlice";
 import { userEvent } from "@testing-library/user-event";
 
 const testStore = configureStore({
   reducer: {
-    hero: heroReducer,
-  },
-  preloadedState: {
-    hero: { loading: false, error: "", users: [] },
+    recipe: recipeReducer,
   },
 });
 

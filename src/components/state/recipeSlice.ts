@@ -1,20 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Recipe } from "@/types/Recipe";
 
-export interface HeroState {
+
+export interface RecipeState {
     loading: boolean;
     error: string;
     recipes: Recipe[];
 }
   
-const initialState: HeroState = {
+const initialState: RecipeState = {
     loading: false,
     error: "",
     recipes: [],
 };
 
-const heroSlice = createSlice({
-    name: "hero",
+const recipeSlice = createSlice({
+    name: "recipe",
     initialState,
     reducers: {
         setLoading: (state, action: PayloadAction<boolean>) => {
@@ -29,5 +30,5 @@ const heroSlice = createSlice({
     }
 });
 
-export const { setLoading, setError, setRecipes } = heroSlice.actions;
-export default heroSlice.reducer;
+export const { setLoading, setError, setRecipes } = recipeSlice.actions;
+export default recipeSlice.reducer;
