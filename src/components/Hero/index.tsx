@@ -45,12 +45,12 @@ const Hero = () => {
     setInputTags([]);
   };
 
-  const fetchRecipes = async (ingredients: string[]) => {
-    console.log(ingredients);
+  const fetchRecipes = async (queryParams: string) => {
     dispatch(setLoading(true));
     try {
+      //TODO: add functionality to increment or decrement the number of recipes
       const data = await fetchData<Recipe[]>(
-        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=apples&number=1`
+        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${queryParams}&number=3`
       );
       console.log(data);
       dispatch(setRecipes(data));
@@ -65,7 +65,8 @@ const Hero = () => {
 
   useEffect(() => {
     if (ingredients.length > 0) {
-      fetchRecipes(ingredients);
+      const queryParams = ingredients.join(",+");
+      fetchRecipes(queryParams);
     }
   }, [ingredients]);
 
