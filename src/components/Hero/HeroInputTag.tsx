@@ -27,7 +27,7 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
             data-testid="input-span"
           >
             {tag}
-            <DeleteIcon key={`${tag}-icon`} className="text-green-600" />
+            <DeleteIcon key={`${tag}-icon`} className="text-primary" />
           </InputSpan>
         </>
       ))}

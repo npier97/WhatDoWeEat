@@ -2,7 +2,7 @@ import { Box, Text } from "components-library";
 
 const Footer = () => (
   <Box
-    className="flex justify-between bg-white text-green-600 font-bold shadow-lg shadow-t-2 py-4 px-12"
+    className="flex justify-between bg-white text-primary font-bold shadow-lg shadow-t-2 py-4 px-12"
     data-testid="footer"
   >
     <Box className="flex">

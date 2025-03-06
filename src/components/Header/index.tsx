@@ -18,7 +18,7 @@ const Header = () => (
     size="md"
     fixed={true}
     shadowOnScroll={true}
-    className="bg-transparent text-green-600"
+    className="bg-transparent text-white"
     data-testid="navbar"
   />
 );
