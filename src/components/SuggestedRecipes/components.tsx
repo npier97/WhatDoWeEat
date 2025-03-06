@@ -10,11 +10,17 @@ export const RecipeContainer = ({
   children,
 }: {
   children: React.ReactNode;
-}) => <Box className="rounded-lg shadow-2xl">{children}</Box>;
+}) => <Box className="rounded-lg shadow-2xl overflow-hidden">{children}</Box>;
 
 export const RecipeButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
-    className="ml-4 bg-primary hover:bg-accent-dark shadow-2xl"
+    className="w-full bg-primary hover:bg-accent-dark shadow-2xl"
   />
 );
+
+export const DescriptionContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => <Box className="p-6">{children}</Box>;

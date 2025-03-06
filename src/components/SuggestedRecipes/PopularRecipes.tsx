@@ -1,5 +1,9 @@
-import { Box, Text } from "components-library";
-import { RecipeButton } from "./components";
+import { Text } from "components-library";
+import {
+  DescriptionContainer,
+  RecipeButton,
+  RecipeContainer,
+} from "./components";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
@@ -10,30 +14,30 @@ const PopularRecipes = () => {
 
   return (
     <>
-      <Box>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="200px" />
-        <Box className="p-8">
+      <RecipeContainer>
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <DescriptionContainer>
           <Text>Title</Text>
           <Text>Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
-        </Box>
-      </Box>
-      <Box>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="200px" />
-        <Box className="p-8">
+        </DescriptionContainer>
+      </RecipeContainer>
+      <RecipeContainer>
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <DescriptionContainer>
           <Text>Title</Text>
           <Text>Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
-        </Box>
-      </Box>
-      <Box>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="200px" />
-        <Box className="p-8">
+        </DescriptionContainer>
+      </RecipeContainer>
+      <RecipeContainer>
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <DescriptionContainer>
           <Text>Title</Text>
           <Text>Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
-        </Box>
-      </Box>
+        </DescriptionContainer>
+      </RecipeContainer>
     </>
   );
 };
