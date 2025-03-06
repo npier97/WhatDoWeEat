@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "@/types/User";
+import { Recipe } from "@/types/Recipe";
 
 export interface HeroState {
     loading: boolean;
     error: string;
-    users: User[];
+    recipes: Recipe[];
 }
   
 const initialState: HeroState = {
     loading: false,
     error: "",
-    users: [],
+    recipes: [],
 };
 
 const heroSlice = createSlice({
@@ -23,11 +23,11 @@ const heroSlice = createSlice({
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload
         },
-        setUsers: (state, action: PayloadAction<User[]>) => {
-            state.users = action.payload;
+        setRecipes: (state, action: PayloadAction<Recipe[]>) => {
+            state.recipes = action.payload;
         },
     }
 });
 
-export const { setLoading, setError, setUsers } = heroSlice.actions;
+export const { setLoading, setError, setRecipes } = heroSlice.actions;
 export default heroSlice.reducer;

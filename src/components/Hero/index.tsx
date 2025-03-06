@@ -6,13 +6,13 @@ import {
   HeroSubtitle,
   HeroTitle,
 } from "./components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { preventSpecialCharacters } from "@utils/string";
 import { fetchData } from "@/utils/fetch";
 import HeroInputTag from "./HeroInputTag";
-import { User } from "@/types/User";
-import { setError, setLoading, setUsers } from "./state/slice";
+import { Recipe } from "@/types/Recipe";
+import { setError, setLoading, setRecipes } from "./state/slice";
 import { RootState } from "@/store";
 
 const Hero = () => {
@@ -29,32 +29,31 @@ const Hero = () => {
     if (event.code === "Space" || event.code === "Enter") {
       event.preventDefault();
 
-      const trimmedValue = inputValue.trim();
-      if (!trimmedValue || inputTags.includes(trimmedValue)) return;
+      if (!inputValue || inputTags.includes(inputValue)) return;
 
-      setInputTags((prevTags) => [...prevTags, trimmedValue]);
+      setInputTags((prevTags) => [...prevTags, inputValue]);
       setInputValue("");
     }
   };
 
   const handleClick = () => {
+    if (!inputValue && inputTags.length === 0) return;
+
     const newItems = inputTags.filter((item) => !ingredients.includes(item));
 
-    if (!inputValue.trim() && inputTags.length === 0) return;
-
-    setIngredients([...ingredients, ...newItems]);
+    setIngredients((prevIngredients) => [...prevIngredients, ...newItems]);
     setInputTags([]);
-    fetchRecipes();
   };
 
-  const fetchRecipes = async () => {
+  const fetchRecipes = async (ingredients: string[]) => {
+    console.log(ingredients);
     dispatch(setLoading(true));
     try {
-      const data = await fetchData<User[]>(
-        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=apples&number=2`
+      const data = await fetchData<Recipe[]>(
+        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=apples&number=1`
       );
       console.log(data);
-      dispatch(setUsers(data));
+      dispatch(setRecipes(data));
     } catch (error) {
       console.error("Error fetching data:", error);
       console.log(error);
@@ -63,6 +62,12 @@ const Hero = () => {
       dispatch(setLoading(false));
     }
   };
+
+  useEffect(() => {
+    if (ingredients.length > 0) {
+      fetchRecipes(ingredients);
+    }
+  }, [ingredients]);
 
   return (
     <HeroContainer>
