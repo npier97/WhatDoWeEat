@@ -17,7 +17,11 @@ const Header = () => (
     ]}
     size="md"
     fixed={true}
-    shadowOnScroll={true}
+    themeOnScroll={{
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      shadow: "shadow-lg",
+    }}
     className="bg-transparent text-white"
     data-testid="navbar"
   />
