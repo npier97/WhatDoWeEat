@@ -50,9 +50,19 @@ describe("Suggested recipes", () => {
   it("should render the searched recipes when searching for recipes", async () => {
     await searchRecipe();
 
-    const suggestedRecipes = screen.getByTestId("suggested-recipes");
-    const searchedRecipes =
-      within(suggestedRecipes).getByTestId("searched-recipes");
+    const suggestedRecipes = await screen.findByTestId("suggested-recipes");
+    const searchedRecipes = await within(suggestedRecipes).findByTestId("searched-recipes");
+
     expect(searchedRecipes).toBeInTheDocument();
   });
+  it("should render the spinner when searching for recipes", async () => {
+    await searchRecipe();
+
+    const suggestedRecipes = screen.getByTestId("suggested-recipes");
+    const spinner =
+      within(suggestedRecipes).getByTestId("suggested-recipes-spinner");
+
+    expect(spinner).toBeInTheDocument();
+
+  })
 });

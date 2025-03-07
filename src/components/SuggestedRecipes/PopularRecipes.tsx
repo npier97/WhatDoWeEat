@@ -11,8 +11,9 @@ import { RootState } from "@/store";
 
 const PopularRecipes = () => {
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
+  const loading = useSelector((state: RootState) => state.recipe.loading);
 
-  if (recipes.length > 0) return null;
+  if (recipes.length > 0 || loading) return null;
 
   return (
     <Box className="flex gap-8" data-testid="popular-recipes">
