@@ -11,7 +11,7 @@ export const RecipeContainer = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <Box className="max-w-xs h-400px flex flex-col justify-between rounded-lg shadow-2xl overflow-hidden">
+  <Box className="max-w-xs h-400px flex flex-col rounded-lg shadow-2xl overflow-hidden">
     {children}
   </Box>
 );
@@ -39,4 +39,4 @@ export const DescriptionText = ({
   children,
 }: {
   children: React.ReactNode;
-}) => <Text className="mb-8">{children}</Text>;
+}) => <Text className="mb-8 line-clamp-5">{children}</Text>;
