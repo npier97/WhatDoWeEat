@@ -8,6 +8,7 @@ import {
 } from "./components";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { mockedRecipes } from "./mockedRecipes";
 
 const PopularRecipes = () => {
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
@@ -17,30 +18,16 @@ const PopularRecipes = () => {
 
   return (
     <Box className="flex gap-8" data-testid="popular-recipes">
-      <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
-        <DescriptionContainer>
-          <DescriptionTitle>Title</DescriptionTitle>
-          <DescriptionText>Description</DescriptionText>
-          <RecipeButton>See full recipe</RecipeButton>
-        </DescriptionContainer>
-      </RecipeContainer>
-      <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
-        <DescriptionContainer>
-          <DescriptionTitle>Title</DescriptionTitle>
-          <DescriptionText>Description</DescriptionText>
-          <RecipeButton>See full recipe</RecipeButton>
-        </DescriptionContainer>
-      </RecipeContainer>
-      <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
-        <DescriptionContainer>
-          <DescriptionTitle>Title</DescriptionTitle>
-          <DescriptionText>Description</DescriptionText>
-          <RecipeButton>See full recipe</RecipeButton>
-        </DescriptionContainer>
-      </RecipeContainer>
+      {Object.entries(mockedRecipes).map(([id, recipe]) => (
+        <RecipeContainer key={`${id}`}>
+          <img src={recipe.image} alt={recipe.title} width="100%" />
+          <DescriptionContainer>
+            <DescriptionTitle>{recipe.title}</DescriptionTitle>
+            <DescriptionText>{recipe.description}</DescriptionText>
+            <RecipeButton>See full recipe</RecipeButton>
+          </DescriptionContainer>
+        </RecipeContainer>
+      ))}
     </Box>
   );
 };
