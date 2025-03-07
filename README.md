@@ -17,3 +17,7 @@
 - **Build Tool:** Vite
 - **Testing:** Vitest
 - **Deployment:** GitHub Pages
+
+## Project Backlog
+
+Check out our Trello board for the project: [Trello Board](https://trello.com/b/T3DqH9qp/whatdoweeat)
