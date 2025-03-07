@@ -10,7 +10,11 @@ export const RecipeContainer = ({
   children,
 }: {
   children: React.ReactNode;
-}) => <Box className="rounded-lg shadow-2xl overflow-hidden">{children}</Box>;
+}) => (
+  <Box className="max-w-xs h-400px flex flex-col justify-between rounded-lg shadow-2xl overflow-hidden">
+    {children}
+  </Box>
+);
 
 export const RecipeButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
@@ -24,3 +28,9 @@ export const DescriptionContainer = ({
 }: {
   children: React.ReactNode;
 }) => <Box className="p-6">{children}</Box>;
+
+export const PopularRecipesTitle = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => <Text className="font-bold">{children}</Text>;

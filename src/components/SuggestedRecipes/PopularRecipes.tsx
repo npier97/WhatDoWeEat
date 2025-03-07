@@ -1,6 +1,7 @@
 import { Text } from "components-library";
 import {
   DescriptionContainer,
+  PopularRecipesTitle,
   RecipeButton,
   RecipeContainer,
 } from "./components";
@@ -15,26 +16,26 @@ const PopularRecipes = () => {
   return (
     <>
       <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <Text>Title</Text>
-          <Text>Description</Text>
+          <PopularRecipesTitle>Title</PopularRecipesTitle>
+          <Text className="mb-8">Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
       <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <Text>Title</Text>
-          <Text>Description</Text>
+          <PopularRecipesTitle>Title</PopularRecipesTitle>
+          <Text className="mb-8">Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
       <RecipeContainer>
-        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="300px" />
+        <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <Text>Title</Text>
-          <Text>Description</Text>
+          <PopularRecipesTitle>Title</PopularRecipesTitle>
+          <Text className="mb-8">Description</Text>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
