@@ -5,7 +5,7 @@ import { SearchedRecipes } from "./SearchedRecipes";
 
 const SuggestedRecipes = () => (
   <Box
-    className="pt-20 pb-20 flex flex-col items-center"
+    className="pt-20 pb-20 bg-gray-50 flex flex-col items-center"
     data-testid="suggested-recipes"
   >
     <RecipeSubtitle>Suggested Recipes</RecipeSubtitle>

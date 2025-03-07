@@ -19,7 +19,7 @@ const Header = () => (
     fixed={true}
     themeOnScroll={{
       backgroundColor: "bg-white",
-      textColor: "text-black",
+      textColor: "text-primary",
       shadow: "shadow-lg",
     }}
     className="bg-transparent text-white"
