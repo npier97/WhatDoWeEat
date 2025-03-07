@@ -1,6 +1,8 @@
-import { Text } from "components-library";
+import { Box } from "components-library";
 import {
   DescriptionContainer,
+  DescriptionText,
+  DescriptionTitle,
   RecipeButton,
   RecipeContainer,
 } from "./components";
@@ -13,17 +15,17 @@ export const SearchedRecipes = () => {
   if (!recipes) return null;
 
   return (
-    <>
+    <Box className="flex gap-8" data-testid="searched-recipes">
       {recipes.map((recipe) => (
-        <RecipeContainer key={`${recipe}`}>
+        <RecipeContainer key={`${recipe}`} data-testid="searched-recipes">
           <img src={recipe.image} alt={recipe.title} width="100%" />
           <DescriptionContainer>
-            <Text className="font-bold">{recipe.title}</Text>
-            <Text className="mb-8">{recipe.title}</Text>
+            <DescriptionTitle>{recipe.title}</DescriptionTitle>
+            <DescriptionText>{recipe.title}</DescriptionText>
             <RecipeButton>See full recipe</RecipeButton>
           </DescriptionContainer>
         </RecipeContainer>
       ))}
-    </>
+    </Box>
   );
 };

@@ -1,7 +1,8 @@
-import { Text } from "components-library";
+import { Box } from "components-library";
 import {
   DescriptionContainer,
-  PopularRecipesTitle,
+  DescriptionText,
+  DescriptionTitle,
   RecipeButton,
   RecipeContainer,
 } from "./components";
@@ -14,32 +15,32 @@ const PopularRecipes = () => {
   if (recipes.length > 0) return null;
 
   return (
-    <>
+    <Box className="flex gap-8" data-testid="popular-recipes">
       <RecipeContainer>
         <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <PopularRecipesTitle>Title</PopularRecipesTitle>
-          <Text className="mb-8">Description</Text>
+          <DescriptionTitle>Title</DescriptionTitle>
+          <DescriptionText>Description</DescriptionText>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
       <RecipeContainer>
         <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <PopularRecipesTitle>Title</PopularRecipesTitle>
-          <Text className="mb-8">Description</Text>
+          <DescriptionTitle>Title</DescriptionTitle>
+          <DescriptionText>Description</DescriptionText>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
       <RecipeContainer>
         <img src="./src/assets/spaghettis.jpg" alt="spaghettis" width="100%" />
         <DescriptionContainer>
-          <PopularRecipesTitle>Title</PopularRecipesTitle>
-          <Text className="mb-8">Description</Text>
+          <DescriptionTitle>Title</DescriptionTitle>
+          <DescriptionText>Description</DescriptionText>
           <RecipeButton>See full recipe</RecipeButton>
         </DescriptionContainer>
       </RecipeContainer>
-    </>
+    </Box>
   );
 };
 

@@ -29,8 +29,14 @@ export const DescriptionContainer = ({
   children: React.ReactNode;
 }) => <Box className="p-6">{children}</Box>;
 
-export const PopularRecipesTitle = ({
+export const DescriptionTitle = ({
   children,
 }: {
   children: React.ReactNode;
 }) => <Text className="font-bold">{children}</Text>;
+
+export const DescriptionText = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => <Text className="mb-8">{children}</Text>;
