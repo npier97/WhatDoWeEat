@@ -1,16 +1,16 @@
-import react from "@vitejs/plugin-react";
-import path from "path";
-import { defineConfig } from "vite";
-import svgr from "vite-plugin-svgr";
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 import tailwindcss from '@tailwindcss/vite';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 // https://vite.dev/config/
 export default defineConfig({
   define: {
-    'process.env': process.env,
+    'process.env': process.env
   },
   resolve: {
     alias: {
@@ -22,8 +22,11 @@ export default defineConfig({
       '@state': path.resolve(__dirname, './src/components/state'),
       '@types': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
-      'components-library': path.resolve(__dirname, 'node_modules/components-library'),
-    },
+      'components-library': path.resolve(
+        __dirname,
+        'node_modules/components-library'
+      )
+    }
   },
   plugins: [
     react(),
@@ -32,9 +35,9 @@ export default defineConfig({
       svgrOptions: {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
         svgoConfig: {
-          floatPrecision: 2,
-        },
-      },
+          floatPrecision: 2
+        }
+      }
     })
-  ],
-})
+  ]
+});

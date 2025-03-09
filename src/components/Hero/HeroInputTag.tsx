@@ -1,6 +1,6 @@
-import { Box } from "components-library";
-import { InputSpan } from "./components";
-import DeleteIcon from "@icons/DeleteIcon";
+import { Box } from 'components-library';
+import { InputSpan } from './components';
+import DeleteIcon from '@icons/DeleteIcon';
 
 interface HeroInputTagProps {
   inputTags: string[];
@@ -15,19 +15,19 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
 
   return (
     <Box
-      id="tags"
-      className="max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2"
-      data-testid="input-span-container"
+      id='tags'
+      className='max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2'
+      data-testid='input-span-container'
     >
       {inputTags.map((tag: string) => (
         <>
           <InputSpan
             key={`${tag}`}
             onClick={() => handleInputTagClick(tag)}
-            data-testid="input-span"
+            data-testid='input-span'
           >
             {tag}
-            <DeleteIcon key={`${tag}-icon`} className="text-primary" />
+            <DeleteIcon key={`${tag}-icon`} className='text-primary' />
           </InputSpan>
         </>
       ))}

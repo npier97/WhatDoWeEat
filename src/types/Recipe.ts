@@ -1,4 +1,4 @@
-export interface Recipe {
+export interface RecipeProps {
   id: number;
   image: string;
   imageType: string;
@@ -21,4 +21,4 @@ type IngredientProps = {
   unit: string;
   unitLong: string;
   unitShort: string;
-}
+};

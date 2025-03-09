@@ -1,32 +1,32 @@
-import { render, screen, within } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { describe, it } from "vitest";
-import SuggestedRecipes from ".";
-import { configureStore } from "@reduxjs/toolkit";
-import recipeReducer from "@state/recipeSlice";
-import userEvent from "@testing-library/user-event";
-import Hero from "@components/Hero";
+import { render, screen, within } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { describe, it } from 'vitest';
+import SuggestedRecipes from '.';
+import { configureStore } from '@reduxjs/toolkit';
+import recipeReducer from '@state/recipeSlice';
+import userEvent from '@testing-library/user-event';
+import Hero from '@components/Hero';
 
 const recipesStore = configureStore({
   reducer: {
-    recipe: recipeReducer,
-  },
+    recipe: recipeReducer
+  }
 });
 
 const searchRecipe = async () => {
-  const hero = screen.getByTestId("hero");
-  const heroInput = within(hero).getByTestId("hero-input");
-  const heroButton = within(hero).getByTestId("hero-button");
-  const suggestedRecipes = screen.getByTestId("suggested-recipes");
+  const hero = screen.getByTestId('hero');
+  const heroInput = within(hero).getByTestId('hero-input');
+  const heroButton = within(hero).getByTestId('hero-button');
+  const suggestedRecipes = screen.getByTestId('suggested-recipes');
 
-  await userEvent.type(heroInput, "apples");
-  await userEvent.keyboard("[Enter]");
+  await userEvent.type(heroInput, 'apples');
+  await userEvent.keyboard('[Enter]');
   await userEvent.click(heroButton);
 
   return suggestedRecipes;
 };
 
-describe("Suggested recipes", () => {
+describe('Suggested recipes', () => {
   beforeEach(() => {
     render(
       <Provider store={recipesStore}>
@@ -35,34 +35,35 @@ describe("Suggested recipes", () => {
       </Provider>
     );
   });
-  it("should render the suggested recipes section", () => {
-    const suggestedRecipes = screen.getByTestId("suggested-recipes");
+  it('should render the suggested recipes section', () => {
+    const suggestedRecipes = screen.getByTestId('suggested-recipes');
 
     expect(suggestedRecipes).toBeInTheDocument();
   });
-  it("should render the current popular recipes by default", () => {
-    const suggestedRecipes = screen.getByTestId("suggested-recipes");
+  it('should render the current popular recipes by default', () => {
+    const suggestedRecipes = screen.getByTestId('suggested-recipes');
     const popularRecipes =
-      within(suggestedRecipes).getByTestId("popular-recipes");
+      within(suggestedRecipes).getByTestId('popular-recipes');
 
     expect(popularRecipes).toBeInTheDocument();
   });
-  it("should render the searched recipes when searching for recipes", async () => {
+  it('should render the searched recipes when searching for recipes', async () => {
     await searchRecipe();
 
-    const suggestedRecipes = await screen.findByTestId("suggested-recipes");
-    const searchedRecipes = await within(suggestedRecipes).findByTestId("searched-recipes");
+    const suggestedRecipes = await screen.findByTestId('suggested-recipes');
+    const searchedRecipes =
+      await within(suggestedRecipes).findByTestId('searched-recipes');
 
     expect(searchedRecipes).toBeInTheDocument();
   });
-  it("should render the spinner when searching for recipes", async () => {
+  it('should render the spinner when searching for recipes', async () => {
     await searchRecipe();
 
-    const suggestedRecipes = screen.getByTestId("suggested-recipes");
-    const spinner =
-      within(suggestedRecipes).getByTestId("suggested-recipes-spinner");
+    const suggestedRecipes = screen.getByTestId('suggested-recipes');
+    const spinner = within(suggestedRecipes).getByTestId(
+      'suggested-recipes-spinner'
+    );
 
     expect(spinner).toBeInTheDocument();
-
-  })
+  });
 });

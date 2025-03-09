@@ -1,21 +1,21 @@
-import { Box } from "components-library";
+import { Box } from 'components-library';
 import {
   HeroButton,
   HeroContainer,
   HeroInput,
   HeroSubtitle,
-  HeroTitle,
-} from "./components";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { preventSpecialCharacters } from "@utils/string";
-import HeroInputTag from "./HeroInputTag";
-import { RootState } from "@/store";
-import { useFetchRecipes } from "@hooks/useFetchRecipes";
+  HeroTitle
+} from './components';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { preventSpecialCharacters } from '@utils/string';
+import HeroInputTag from './HeroInputTag';
+import { RootState } from '@/store';
+import { useFetchRecipes } from '@hooks/useFetchRecipes';
 
 const Hero = () => {
   const loading = useSelector((state: RootState) => state.recipe.loading);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>('');
   const [inputTags, setInputTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
 
@@ -24,13 +24,13 @@ const Hero = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
 
-    if (event.code === "Space" || event.code === "Enter") {
+    if (event.code === 'Space' || event.code === 'Enter') {
       event.preventDefault();
 
       if (!inputValue || inputTags.includes(inputValue)) return;
 
       setInputTags((prevTags) => [...prevTags, inputValue]);
-      setInputValue("");
+      setInputValue('');
     }
   };
 
@@ -45,7 +45,7 @@ const Hero = () => {
 
   useEffect(() => {
     if (ingredients.length > 0) {
-      const queryParams = ingredients.join(",+");
+      const queryParams = ingredients.join(',+');
       fetchRecipes(queryParams);
     }
   }, [ingredients]);
@@ -56,17 +56,17 @@ const Hero = () => {
       <HeroSubtitle>
         Unleash culinary creativity with what you have!
       </HeroSubtitle>
-      <Box className="w-full mb-4 flex items-center justify-center">
+      <Box className='w-full mb-4 flex items-center justify-center'>
         <HeroInput
-          name="text"
-          type="text"
+          name='text'
+          type='text'
           value={inputValue}
-          placeholder="Type an ingredient and press Enter or Space"
+          placeholder='Type an ingredient and press Enter or Space'
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          data-testid="hero-input"
+          data-testid='hero-input'
         />
-        <HeroButton onClick={handleClick} data-testid="hero-button">
+        <HeroButton onClick={handleClick} data-testid='hero-button'>
           Discover recipes
         </HeroButton>
       </Box>
