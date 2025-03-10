@@ -22,7 +22,7 @@ const PopularRecipes = () => {
       data-testid='popular-recipes'
     >
       {Object.entries(mockedRecipes).map(([id, recipe]) => (
-        <RecipeContainer key={`${id}`}>
+        <RecipeContainer key={id}>
           <img src={recipe.image} alt={recipe.title} width='100%' />
           <DescriptionContainer>
             <DescriptionTitle>{recipe.title}</DescriptionTitle>

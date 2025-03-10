@@ -20,16 +20,14 @@ const HeroInputTag = ({ inputTags, onTagClick }: HeroInputTagProps) => {
       data-testid='input-span-container'
     >
       {inputTags.map((tag: string) => (
-        <>
-          <InputSpan
-            key={`${tag}`}
-            onClick={() => handleInputTagClick(tag)}
-            data-testid='input-span'
-          >
-            {tag}
-            <DeleteIcon key={`${tag}-icon`} className='text-primary' />
-          </InputSpan>
-        </>
+        <InputSpan
+          key={tag}
+          onClick={() => handleInputTagClick(tag)}
+          data-testid='input-span'
+        >
+          {tag}
+          <DeleteIcon className='text-primary' />
+        </InputSpan>
       ))}
     </Box>
   );

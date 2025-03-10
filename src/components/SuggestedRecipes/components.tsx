@@ -27,7 +27,9 @@ export const DescriptionContainer = ({
   children
 }: {
   children: React.ReactNode;
-}) => <Box className='p-6'>{children}</Box>;
+}) => (
+  <Box className='p-6 h-full flex flex-col justify-between'>{children}</Box>
+);
 
 export const DescriptionTitle = ({
   children
