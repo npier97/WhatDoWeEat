@@ -7,14 +7,11 @@ import {
   HeroTitle
 } from './components';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { preventSpecialCharacters } from '@utils/string';
 import HeroInputTag from './HeroInputTag';
-import { RootState } from '@/store';
 import { useFetchRecipes } from '@hooks/useFetchRecipes';
 
 const Hero = () => {
-  const loading = useSelector((state: RootState) => state.recipe.loading);
   const [inputValue, setInputValue] = useState<string>('');
   const [inputTags, setInputTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -56,7 +53,7 @@ const Hero = () => {
       <HeroSubtitle>
         Unleash culinary creativity with what you have!
       </HeroSubtitle>
-      <Box className='w-full mb-4 flex items-center justify-center'>
+      <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
         <HeroInput
           name='text'
           type='text'
@@ -71,7 +68,6 @@ const Hero = () => {
         </HeroButton>
       </Box>
       <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
-      {loading && <p>Loading...</p>}
     </HeroContainer>
   );
 };

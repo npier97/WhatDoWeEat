@@ -27,7 +27,10 @@ export const SearchedRecipes = () => {
   if (!recipes) return null;
 
   return (
-    <Box className='flex gap-8' data-testid='searched-recipes'>
+    <Box
+      className='flex max-[1023px]:flex-col gap-8'
+      data-testid='searched-recipes'
+    >
       {recipes.map((recipe) => (
         <RecipeContainer key={`${recipe}`}>
           <img src={recipe.image} alt={recipe.title} width='100%' />

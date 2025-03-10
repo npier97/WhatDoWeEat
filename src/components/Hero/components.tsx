@@ -3,7 +3,7 @@ import KitchenBackground from '@assets/kitchen.png';
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
   <Box
-    className='pt-40 pb-20 text-white flex flex-col items-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed'
+    className='pt-40 max-[1023px]:px-4 pb-20 text-white flex flex-col items-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed'
     style={{ backgroundImage: `url(${KitchenBackground})` }}
     data-testid='hero'
   >
@@ -12,13 +12,13 @@ export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const HeroTitle = ({ children }: { children: React.ReactNode }) => (
-  <Text as='h1' className='mb-4 font-bold text-4xl'>
+  <Text as='h1' className='mb-4 text-center font-bold text-4xl'>
     {children}
   </Text>
 );
 
 export const HeroSubtitle = ({ children }: { children: React.ReactNode }) => (
-  <Text as='h2' className='mb-4 font-semibold text-xl'>
+  <Text as='h2' className='mb-4 text-center font-semibold text-xl'>
     {children}
   </Text>
 );
@@ -32,10 +32,7 @@ export const HeroInput = (props: React.ComponentProps<typeof Input>) => (
 );
 
 export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
-  <Button
-    {...props}
-    className='ml-4 bg-primary hover:bg-accent-dark shadow-2xl'
-  />
+  <Button {...props} className='bg-primary hover:bg-accent-dark shadow-2xl' />
 );
 
 export const InputSpan = (props: React.ComponentProps<'span'>) => (

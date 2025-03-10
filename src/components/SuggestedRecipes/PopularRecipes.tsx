@@ -17,7 +17,10 @@ const PopularRecipes = () => {
   if (recipes.length > 0 || loading) return null;
 
   return (
-    <Box className='flex gap-8' data-testid='popular-recipes'>
+    <Box
+      className='flex max-[1023px]:flex-col gap-8'
+      data-testid='popular-recipes'
+    >
       {Object.entries(mockedRecipes).map(([id, recipe]) => (
         <RecipeContainer key={`${id}`}>
           <img src={recipe.image} alt={recipe.title} width='100%' />
