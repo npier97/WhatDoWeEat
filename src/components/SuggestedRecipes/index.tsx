@@ -1,7 +1,7 @@
 import { Box } from 'components-library';
 import { RecipeSubtitle } from './components';
 import PopularRecipes from './PopularRecipes';
-import { SearchedRecipes } from './SearchedRecipes';
+import SearchedRecipes from './SearchedRecipes';
 
 const SuggestedRecipes = () => (
   <Box

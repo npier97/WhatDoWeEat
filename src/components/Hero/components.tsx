@@ -35,7 +35,17 @@ export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
   <Button {...props} className='bg-primary hover:bg-accent-dark shadow-2xl' />
 );
 
-export const InputSpan = (props: React.ComponentProps<'span'>) => (
+export const TagContainer = ({ children }: { children: React.ReactNode }) => (
+  <Box
+    id='tags'
+    className='max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2'
+    data-testid='tag-span-container'
+  >
+    {children}
+  </Box>
+);
+
+export const TagSpan = (props: React.ComponentProps<'span'>) => (
   <span
     {...props}
     className='p-2 bg-accent-light text-primary hover:bg-accent-medium shadow-2xl hover:ring-2 hover:ring-[#50A57A] flex items-center rounded-2xl cursor-pointer'

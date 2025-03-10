@@ -8,12 +8,12 @@ import {
 } from './components';
 import { useEffect, useState } from 'react';
 import { preventSpecialCharacters } from '@utils/string';
-import HeroInputTag from './HeroInputTag';
+import HeroTag from './HeroTag';
 import { useFetchRecipes } from '@hooks/useFetchRecipes';
 
 const Hero = () => {
   const [inputValue, setInputValue] = useState<string>('');
-  const [inputTags, setInputTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
 
   const { fetchRecipes } = useFetchRecipes();
@@ -24,20 +24,20 @@ const Hero = () => {
     if (event.code === 'Space' || event.code === 'Enter') {
       event.preventDefault();
 
-      if (!inputValue || inputTags.includes(inputValue)) return;
+      if (!inputValue || tags.includes(inputValue)) return;
 
-      setInputTags((prevTags) => [...prevTags, inputValue]);
+      setTags((prevTags) => [...prevTags, inputValue]);
       setInputValue('');
     }
   };
 
   const handleClick = () => {
-    if (!inputValue && inputTags.length === 0) return;
+    if (!inputValue && tags.length === 0) return;
 
-    const newItems = inputTags.filter((item) => !ingredients.includes(item));
+    const newItems = tags.filter((item) => !ingredients.includes(item));
 
     setIngredients((prevIngredients) => [...prevIngredients, ...newItems]);
-    setInputTags([]);
+    setTags([]);
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Hero = () => {
           Discover recipes
         </HeroButton>
       </Box>
-      <HeroInputTag inputTags={inputTags} onTagClick={setInputTags} />
+      <HeroTag tags={tags} onTagClick={setTags} />
     </HeroContainer>
   );
 };

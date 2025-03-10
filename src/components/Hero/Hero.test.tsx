@@ -48,21 +48,21 @@ describe('Hero', () => {
   describe('tags creation and deletion', () => {
     it('should create a tag on pressing Enter key', async () => {
       await setNewTag();
-      const inputSpan = screen.getByTestId('input-span');
+      const tag = screen.getByTestId('tag-span');
 
-      expect(inputSpan).toBeInTheDocument();
-      expect(inputSpan.textContent).toEqual('apple');
+      expect(tag).toBeInTheDocument();
+      expect(tag.textContent).toEqual('apple');
     });
     it('should delete the tag when the delete icon is clicked', async () => {
       await setNewTag();
-      const inputSpan = screen.getByTestId('input-span');
-      const deleteIcon = within(inputSpan).getByTestId('delete-icon');
+      const tag = screen.getByTestId('tag-span');
+      const deleteIcon = within(tag).getByTestId('delete-icon');
 
       await userEvent.click(deleteIcon);
 
-      const inputSpanContainer = screen.getByTestId('input-span-container');
+      const tagContainer = screen.getByTestId('tag-span-container');
 
-      expect(inputSpanContainer.children.length).toBe(0);
+      expect(tagContainer.children.length).toBe(0);
     });
     it('should delete the tags when Discover Recipes button is clicked', async () => {
       const heroButton = screen.getByTestId('hero-button');
@@ -70,9 +70,9 @@ describe('Hero', () => {
       await setNewTag();
       await userEvent.click(heroButton);
 
-      const inputSpanContainer = screen.getByTestId('input-span-container');
+      const tagContainer = screen.getByTestId('tag-span-container');
 
-      expect(inputSpanContainer.children.length).toBe(0);
+      expect(tagContainer.children.length).toBe(0);
     });
   });
 });

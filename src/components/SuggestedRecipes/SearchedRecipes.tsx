@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Spinner } from '../Spinner';
 
-export const SearchedRecipes = () => {
+const SearchedRecipes = () => {
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
   const loading = useSelector((state: RootState) => state.recipe.loading);
   const placeholderImage = './src/assets/placeholder.webp';
@@ -51,3 +51,5 @@ export const SearchedRecipes = () => {
     </Box>
   );
 };
+
+export default SearchedRecipes;
