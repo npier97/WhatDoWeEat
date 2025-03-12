@@ -44,6 +44,7 @@ export const TagContainer = ({ children }: { children: React.ReactNode }) => (
     id='tags'
     className='max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2'
     data-testid='tag-span-container'
+    role='list'
   >
     {children}
   </Box>
@@ -53,5 +54,7 @@ export const TagSpan = (props: React.ComponentProps<'span'>) => (
   <span
     {...props}
     className='p-2 bg-accent-light text-primary hover:bg-accent-medium shadow-2xl hover:ring-2 hover:ring-[#50A57A] flex items-center rounded-2xl cursor-pointer'
+    role='listitem'
+    tabIndex={0}
   />
 );
