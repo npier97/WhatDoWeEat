@@ -22,3 +22,8 @@ type IngredientProps = {
   unitLong: string;
   unitShort: string;
 };
+
+export interface RecipeContainerProps {
+  children: React.ReactNode;
+  index: number;
+}

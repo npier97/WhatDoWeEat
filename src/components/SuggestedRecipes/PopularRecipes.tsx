@@ -8,7 +8,7 @@ import {
 } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { mockedRecipes } from './mockedRecipes';
+import { mockedRecipes } from '@mocks/mockedRecipes';
 
 const PopularRecipes = () => {
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
@@ -21,8 +21,8 @@ const PopularRecipes = () => {
       className='flex max-[1023px]:flex-col gap-8'
       data-testid='popular-recipes'
     >
-      {Object.entries(mockedRecipes).map(([id, recipe]) => (
-        <RecipeContainer key={id}>
+      {Object.entries(mockedRecipes).map(([id, recipe], index) => (
+        <RecipeContainer key={id} index={index}>
           <img src={recipe.image} alt={recipe.title} width='100%' />
           <DescriptionContainer>
             <DescriptionTitle>{recipe.title}</DescriptionTitle>

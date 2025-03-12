@@ -55,13 +55,14 @@ const Hero = () => {
       </HeroSubtitle>
       <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
         <HeroInput
-          name='text'
+          name='ingredients'
           type='text'
           value={inputValue}
           placeholder='Type an ingredient and press Enter or Space'
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
           data-testid='hero-input'
+          aria-label='Search input'
         />
         <HeroButton onClick={handleClick} data-testid='hero-button'>
           Discover recipes

@@ -13,6 +13,7 @@
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
       "@icons/*": ["src/icons/*"],
+      "@mocks/*": ["src/mocks/*"],
       "@state/*": ["src/components/state/*"],
       "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],

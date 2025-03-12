@@ -1,3 +1,4 @@
+import { RecipeContainerProps } from '@/types/Recipe';
 import { Box, Button, Text } from 'components-library';
 
 export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
@@ -6,12 +7,11 @@ export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
   </Text>
 );
 
-export const RecipeContainer = ({
-  children
-}: {
-  children: React.ReactNode;
-}) => (
-  <Box className='max-w-xs h-400px flex flex-col rounded-lg shadow-2xl overflow-hidden'>
+export const RecipeContainer = ({ children, index }: RecipeContainerProps) => (
+  <Box
+    className='max-w-xs h-400px flex flex-col rounded-lg shadow-2xl overflow-hidden'
+    aria-label={`Recipe ${index + 1}`} // We add 1 to the index for voice-over readability
+  >
     {children}
   </Box>
 );
@@ -35,7 +35,11 @@ export const DescriptionTitle = ({
   children
 }: {
   children: React.ReactNode;
-}) => <Text className='font-bold'>{children}</Text>;
+}) => (
+  <Text as='h3' className='font-bold'>
+    {children}
+  </Text>
+);
 
 export const DescriptionText = ({
   children

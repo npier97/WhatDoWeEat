@@ -32,7 +32,11 @@ export const HeroInput = (props: React.ComponentProps<typeof Input>) => (
 );
 
 export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
-  <Button {...props} className='bg-primary hover:bg-accent-dark shadow-2xl' />
+  <Button
+    {...props}
+    className='bg-primary hover:bg-accent-dark shadow-2xl'
+    aria-label='Discover recipes'
+  />
 );
 
 export const TagContainer = ({ children }: { children: React.ReactNode }) => (

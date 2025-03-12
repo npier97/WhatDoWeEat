@@ -32,8 +32,8 @@ const SearchedRecipes = () => {
       className='flex max-[1023px]:flex-col gap-8'
       data-testid='searched-recipes'
     >
-      {recipes.map((recipe) => (
-        <RecipeContainer key={recipe.title}>
+      {recipes.map((recipe, index) => (
+        <RecipeContainer key={recipe.title} index={index}>
           <img
             src={recipe.image}
             alt={recipe.title}
