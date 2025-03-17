@@ -6,6 +6,8 @@ import { useFetchRecipes } from '@hooks/useFetchRecipes';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTags } from '@state/tagSlice';
 import { RootState } from '@/store';
+import RandomRecipeGenerator from './RandomRecipeGenerator';
+import { useFetchRandomRecipes } from '@/hooks/useFetchRandomRecipes';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const HeroActions = () => {
   const tags = useSelector((state: RootState) => state.tag.tags);
 
   const { fetchRecipes } = useFetchRecipes();
+  const { fetchRandomRecipes } = useFetchRandomRecipes();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
@@ -37,6 +40,8 @@ const HeroActions = () => {
     dispatch(setTags([]));
   };
 
+  const handleGenerationClick = () => fetchRandomRecipes();
+
   useEffect(() => {
     if (ingredients.length > 0) {
       const queryParams = ingredients.join(',+');
@@ -59,6 +64,7 @@ const HeroActions = () => {
       <HeroButton onClick={handleClick} data-testid='hero-button'>
         Discover recipes
       </HeroButton>
+      <RandomRecipeGenerator onClick={handleGenerationClick} />
     </Box>
   );
 };

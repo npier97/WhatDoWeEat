@@ -4,12 +4,14 @@ import { describe, it } from 'vitest';
 import SuggestedRecipes from '.';
 import { configureStore } from '@reduxjs/toolkit';
 import recipeReducer from '@state/recipeSlice';
+import randomRecipeReducer from '@state/randomRecipeSlice';
 import tagReducer from '@state/tagSlice';
 import userEvent from '@testing-library/user-event';
 import Hero from '@components/Hero';
 
 const recipesStore = configureStore({
   reducer: {
+    randomRecipe: randomRecipeReducer,
     recipe: recipeReducer,
     tag: tagReducer
   }
@@ -67,5 +69,19 @@ describe('Suggested recipes', () => {
     );
 
     expect(spinner).toBeInTheDocument();
+  });
+  it('should render the generated random recipes when clicking on the button', async () => {
+    const hero = screen.getByTestId('hero');
+    const randomRecipeGenerator = within(hero).getByTestId(
+      'random-recipe-generator'
+    );
+
+    await userEvent.click(randomRecipeGenerator);
+
+    const suggestedRecipes = await screen.findByTestId('suggested-recipes');
+    const randomRecipes =
+      await within(suggestedRecipes).findByTestId('random-recipes');
+
+    expect(randomRecipes).toBeInTheDocument();
   });
 });

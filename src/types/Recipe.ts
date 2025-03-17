@@ -1,7 +1,6 @@
 export interface RecipeProps {
   id: number;
   image: string;
-  imageType: string;
   likes: string;
   missedIngredientCount: number;
   missedIngredients: IngredientProps[];
@@ -10,7 +9,7 @@ export interface RecipeProps {
   title: string;
 }
 
-type IngredientProps = {
+export type IngredientProps = {
   aisle: string;
   amount: number;
   id: number;

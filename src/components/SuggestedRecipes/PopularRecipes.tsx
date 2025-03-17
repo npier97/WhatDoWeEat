@@ -12,9 +12,12 @@ import { mockedRecipes } from '@mocks/mockedRecipes';
 
 const PopularRecipes = () => {
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
+  const randomRecipes = useSelector(
+    (state: RootState) => state.randomRecipe.recipes
+  );
   const loading = useSelector((state: RootState) => state.recipe.loading);
 
-  if (recipes.length > 0 || loading) return null;
+  if (recipes.length > 0 || randomRecipes.length > 0 || loading) return null;
 
   return (
     <Box

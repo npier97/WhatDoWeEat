@@ -58,3 +58,13 @@ export const TagSpan = (props: React.ComponentProps<'span'>) => (
     tabIndex={0}
   />
 );
+
+export const GenerateRecipeButton = (
+  props: React.ComponentProps<typeof Button>
+) => (
+  <Button
+    {...props}
+    className='p-2 bg-primary hover:bg-accent-dark shadow-2xl flex gap-1 items-center'
+    aria-label='Generate random recipes'
+  />
+);
