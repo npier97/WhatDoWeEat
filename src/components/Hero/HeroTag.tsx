@@ -1,15 +1,16 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { TagContainer, TagSpan } from './components';
 import DeleteIcon from '@icons/DeleteIcon';
+import { RootState } from '@/store';
+import { setTags } from '@state/tagSlice';
 
-interface HeroInputTagProps {
-  tags: string[];
-  onTagClick: (tags: string[]) => void;
-}
+const HeroTag = () => {
+  const dispatch = useDispatch();
+  const tags = useSelector((state: RootState) => state.tag.tags);
 
-const HeroTag = ({ tags, onTagClick }: HeroInputTagProps) => {
   const handleInputTagClick = (tag: string) => {
     const updatedTags = tags.filter((item) => item !== tag);
-    onTagClick([...updatedTags]);
+    dispatch(setTags([...updatedTags]));
   };
 
   return (

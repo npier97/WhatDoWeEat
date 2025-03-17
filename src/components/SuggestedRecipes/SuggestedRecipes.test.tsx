@@ -4,12 +4,14 @@ import { describe, it } from 'vitest';
 import SuggestedRecipes from '.';
 import { configureStore } from '@reduxjs/toolkit';
 import recipeReducer from '@state/recipeSlice';
+import tagReducer from '@state/tagSlice';
 import userEvent from '@testing-library/user-event';
 import Hero from '@components/Hero';
 
 const recipesStore = configureStore({
   reducer: {
-    recipe: recipeReducer
+    recipe: recipeReducer,
+    tag: tagReducer
   }
 });
 
