@@ -3,7 +3,7 @@ import { GenerateRecipeButton } from './components';
 
 const RandomRecipeGenerator = ({ onClick }: { onClick: () => void }) => (
   <GenerateRecipeButton onClick={onClick} data-testid='random-recipe-generator'>
-    Generate <SparkleIcon />
+    Get more <SparkleIcon />
   </GenerateRecipeButton>
 );
 

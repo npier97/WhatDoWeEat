@@ -8,6 +8,8 @@ import { setTags } from '@state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
 import { useFetchRandomRecipes } from '@/hooks/useFetchRandomRecipes';
+import { setRecipes } from '@state/recipeSlice';
+import { setRandomRecipes } from '@state/randomRecipeSlice';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
@@ -38,9 +40,13 @@ const HeroActions = () => {
 
     setIngredients((prevIngredients) => [...prevIngredients, ...newItems]);
     dispatch(setTags([]));
+    dispatch(setRandomRecipes([]));
   };
 
-  const handleGenerationClick = () => fetchRandomRecipes();
+  const handleGenerationClick = () => {
+    fetchRandomRecipes();
+    dispatch(setRecipes([]));
+  };
 
   useEffect(() => {
     if (ingredients.length > 0) {
@@ -62,7 +68,7 @@ const HeroActions = () => {
         aria-label='Search input'
       />
       <HeroButton onClick={handleClick} data-testid='hero-button'>
-        Discover recipes
+        Search recipes
       </HeroButton>
       <RandomRecipeGenerator onClick={handleGenerationClick} />
     </Box>

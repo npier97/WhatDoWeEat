@@ -1,11 +1,11 @@
 export interface RecipeProps {
   id: number;
-  image: string;
-  likes: string;
-  missedIngredientCount: number;
-  missedIngredients: IngredientProps[];
-  usedIngredientCount: number;
-  usedIngredients: IngredientProps[];
+  image?: string;
+  likes?: string;
+  missedIngredientCount?: number;
+  missedIngredients?: IngredientProps[];
+  usedIngredientCount?: number;
+  usedIngredients?: IngredientProps[];
   title: string;
 }
 

@@ -7,7 +7,8 @@ export interface RandomRecipeResponse {
 export type RandomRecipeProps = {
   id: number;
   title: string;
-  image: string;
+  image?: string;
   summary: string;
-  extendedIngredients: IngredientProps[];
+  instructions: string;
+  extendedIngredients?: IngredientProps[];
 };

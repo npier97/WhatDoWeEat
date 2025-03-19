@@ -10,7 +10,7 @@ const Footer = () => (
       <Text>Terms of service</Text>
     </Box>
     <Text data-testid='copyright' aria-label='Copyright Information'>
-      © 2025 WhatDoWeEat
+      &copy; 2025 WhatDoWeEat
     </Text>
   </footer>
 );
