@@ -5,9 +5,10 @@ const Header = () => (
   <Navbar
     logo={<img src={Logo} alt='Logo' width={'50px'} />}
     brand='WhatDoWeEat'
+    brandHref={process.env.VITE_PUBLIC_URL}
     links={[
       {
-        href: '/',
+        href: `${process.env.VITE_PUBLIC_URL}`,
         name: 'Home'
       }
     ]}

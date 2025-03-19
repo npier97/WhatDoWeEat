@@ -16,7 +16,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "@tailwindcss/vite": "^4.0.9",
-    "components-library": "github:npier97/Components-Library#v1.2.2",
+    "components-library": "github:npier97/Components-Library#v1.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0"

@@ -20,7 +20,7 @@ describe('Navigation bar', () => {
     it('should have the correct href attributes', () => {
       const navbar = screen.getByTestId('navbar');
       const homeLink = within(navbar).getByText('Home');
-      expect(homeLink).toHaveAttribute('href', '/');
+      expect(homeLink).toHaveAttribute('href', '/WhatDoWeEat/');
     });
   });
 });
