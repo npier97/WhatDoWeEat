@@ -1,4 +1,4 @@
-# What Do We Eat
+# What Do We Eat (Still In Progress)
 
 ## Overview
 
@@ -20,4 +20,4 @@
 
 ## Project Backlog
 
-Check out our Trello board for the project: [Trello Board](https://trello.com/b/T3DqH9qp/whatdoweeat)
+Check out my Trello board for an overview of the project's progress and upcoming features: [Trello Board](https://trello.com/b/T3DqH9qp/whatdoweeat)
