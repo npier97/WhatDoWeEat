@@ -1,10 +1,9 @@
 import { Box, Text, Input, Button } from 'components-library';
-import KitchenBackground from '@assets/kitchen.png';
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
   <Box
     className='pt-40 max-[1023px]:px-4 pb-20 text-white flex flex-col items-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed'
-    style={{ backgroundImage: `url(${KitchenBackground})` }}
+    style={{ backgroundImage: `url('images/kitchen.png')` }}
     data-testid='hero'
   >
     {children}

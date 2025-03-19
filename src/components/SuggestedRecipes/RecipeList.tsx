@@ -17,7 +17,7 @@ import { isRandomRecipe } from '@/utils/typeGuards';
 const RecipeList = ({ recipes, loading }: RecipeListProps) => {
   const dispatch = useDispatch();
   const [selectedRecipe, setSelectedRecipe] = useState('');
-  const placeholderImage = './src/assets/placeholder.webp';
+  const placeholderImage = 'images/placeholder.webp';
 
   const handleClick = (description: string) => {
     setSelectedRecipe(description);

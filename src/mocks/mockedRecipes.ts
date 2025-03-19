@@ -2,7 +2,7 @@ export const mockedRecipes = [
   {
     id: 1,
     title: 'Pepper Jelly Cocktail Meatballs',
-    image: './src/assets/meatballs.webp',
+    image: 'images/meatballs.webp',
     summary:
       'Inspired by slow cooker grape jelly meatballs, F&W recipe developer Nicole Hopper coats these broiled pork and beef meatballs in a sticky, spicy-sweet sauce made with pepper jelly and chipotles in adobo sauce.',
     instructions: `
@@ -19,7 +19,7 @@ export const mockedRecipes = [
   {
     id: 2,
     title: 'Coq au Vin Blanc',
-    image: './src/assets/coq-au-vin.webp',
+    image: 'images/coq-au-vin.webp',
     summary:
       'This version of the French chicken and vegetable stew from chef Anina Belle Giannini is made with a dry white wine like Chardonnay instead of the traditional red. It is still plenty indulgent, thanks to browned chicken pieces, bacon lardons, and a silky, buttery sauce.',
     instructions: `
@@ -36,7 +36,7 @@ export const mockedRecipes = [
   {
     id: 3,
     title: 'Teriyaki Salmon',
-    image: './src/assets/salmon.webp',
+    image: 'images/salmon.webp',
     summary:
       'This weeknight-friendly salmon from F&W recipe developer Nicole Hopper is glazed with a sweet-savory teriyaki sauce that includes soy sauce, mirin, brown sugar, sesame seeds, and fresh ginger. Broiling the salmon on a rack set over green beans works double duty to season the veggies as they cook.',
     instructions: `

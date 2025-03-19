@@ -9,7 +9,7 @@ dotenv.config();
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/What-Do-We-Eat',
+  base: '/What-Do-We-Eat/',
   define: {
     'process.env': process.env
   },
