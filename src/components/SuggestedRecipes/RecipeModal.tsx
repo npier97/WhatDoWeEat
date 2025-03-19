@@ -19,7 +19,10 @@ const RecipeModal = ({ instructions }: { instructions: string }) => {
       className='bg-transparent'
       contentClassName='flex justify-center'
     >
-      <Text className='pb-4'>{instructions}</Text>
+      <Text
+        className='pb-4'
+        dangerouslySetInnerHTML={{ __html: instructions }}
+      />
       <RecipeButton onClick={handleClose}>Close</RecipeButton>
     </Modal>
   );

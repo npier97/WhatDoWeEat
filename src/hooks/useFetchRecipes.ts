@@ -24,7 +24,7 @@ export const useFetchRecipes = () => {
         console.error('Error fetching data:', error);
         dispatch(setError('Failed to fetch recipes'));
       } finally {
-        dispatch(setLoading(false));
+        setTimeout(() => dispatch(setLoading(false)), 300);
       }
     },
     [dispatch]

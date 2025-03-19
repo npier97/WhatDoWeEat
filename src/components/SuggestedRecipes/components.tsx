@@ -41,8 +41,9 @@ export const DescriptionTitle = ({
   </Text>
 );
 
-export const DescriptionText = ({
-  children
-}: {
-  children: React.ReactNode;
-}) => <Text className='mb-8 line-clamp-5'>{children}</Text>;
+export const DescriptionText = ({ summary }: { summary: string }) => (
+  <Text
+    className='mb-8 line-clamp-5'
+    dangerouslySetInnerHTML={{ __html: summary }}
+  />
+);

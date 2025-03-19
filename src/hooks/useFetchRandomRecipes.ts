@@ -23,7 +23,7 @@ export const useFetchRandomRecipes = () => {
       console.error('Error fetching data:', error);
       dispatch(setError('Failed to fetch random recipes'));
     } finally {
-      dispatch(setLoading(false));
+      setTimeout(() => dispatch(setLoading(false)), 300);
     }
   }, [dispatch]);
 

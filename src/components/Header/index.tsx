@@ -9,10 +9,6 @@ const Header = () => (
       {
         href: '/',
         name: 'Home'
-      },
-      {
-        href: '/recipes',
-        name: 'Recipes'
       }
     ]}
     size='md'
