@@ -33,7 +33,7 @@ export const HeroInput = (props: React.ComponentProps<typeof Input>) => (
 export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
-    className='bg-primary hover:bg-accent-dark shadow-2xl'
+    className='w-full max-w-xs lg:!w-[150px] bg-primary hover:bg-accent-dark shadow-2xl'
     aria-label='Discover recipes'
   />
 );
@@ -63,7 +63,7 @@ export const GenerateRecipeButton = (
 ) => (
   <Button
     {...props}
-    className='p-2 bg-primary hover:bg-accent-dark shadow-2xl flex gap-1 items-center'
+    className='w-full max-w-xs lg:!w-[150px] p-2 bg-primary hover:bg-accent-dark shadow-2xl flex gap-1 items-center justify-center'
     aria-label='Generate random recipes'
   />
 );
