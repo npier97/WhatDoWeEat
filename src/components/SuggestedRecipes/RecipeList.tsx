@@ -47,10 +47,7 @@ const RecipeList = ({ recipes, loading }: RecipeListProps) => {
           <DescriptionContainer>
             <DescriptionTitle>{recipe.title}</DescriptionTitle>
             <DescriptionText summary={recipe.summary} />
-            <RecipeButton
-              className='mb-2'
-              onClick={() => handleClick(recipe.summary)}
-            >
+            <RecipeButton onClick={() => handleClick(recipe.summary)}>
               See summary
             </RecipeButton>
             <RecipeButton

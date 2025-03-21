@@ -1,13 +1,13 @@
-import { Box, Text, Input, Button } from 'components-library';
+import { Box, Text, Input, Button, Stack } from 'components-library';
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
-  <Box
-    className='pt-40 max-[1023px]:px-4 pb-20 text-white flex flex-col items-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed'
+  <Stack
+    className='pt-40 max-[1023px]:px-4 pb-20 text-white items-center bg-hero bg-no-repeat bg-cover bg-center bg-fixed'
     style={{ backgroundImage: `url('images/kitchen.png')` }}
     data-testid='hero'
   >
     {children}
-  </Box>
+  </Stack>
 );
 
 export const HeroTitle = ({ children }: { children: React.ReactNode }) => (

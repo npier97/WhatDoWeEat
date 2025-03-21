@@ -1,5 +1,5 @@
 import { RecipeContainerProps } from '@/types/Recipe';
-import { Box, Button, Text } from 'components-library';
+import { Button, Stack, Text } from 'components-library';
 
 export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
   <Text as='h2' className='mb-15 font-bold text-xl'>
@@ -8,21 +8,18 @@ export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const RecipeContainer = ({ children, index }: RecipeContainerProps) => (
-  <Box
-    className='max-w-xs h-400px flex flex-col rounded-lg shadow-2xl overflow-hidden'
+  <Stack
+    className='max-w-xs h-400px rounded-lg shadow-2xl overflow-hidden'
     aria-label={`Recipe ${index + 1}`} // We add 1 to the index for voice-over readability
   >
     {children}
-  </Box>
+  </Stack>
 );
 
-export const RecipeButton = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof Button>) => (
+export const RecipeButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
-    className={`w-full bg-primary hover:bg-accent-dark shadow-2xl ${className}`}
+    className={`w-full bg-primary hover:bg-accent-dark shadow-2xl`}
   />
 );
 
@@ -30,9 +27,7 @@ export const DescriptionContainer = ({
   children
 }: {
   children: React.ReactNode;
-}) => (
-  <Box className='p-6 h-full flex flex-col justify-between'>{children}</Box>
-);
+}) => <Stack className='p-6 h-full justify-between gap-2'>{children}</Stack>;
 
 export const DescriptionTitle = ({
   children
