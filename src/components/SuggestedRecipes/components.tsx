@@ -16,10 +16,13 @@ export const RecipeContainer = ({ children, index }: RecipeContainerProps) => (
   </Box>
 );
 
-export const RecipeButton = (props: React.ComponentProps<typeof Button>) => (
+export const RecipeButton = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
-    className='w-full bg-primary hover:bg-accent-dark shadow-2xl'
+    className={`w-full bg-primary hover:bg-accent-dark shadow-2xl ${className}`}
   />
 );
 

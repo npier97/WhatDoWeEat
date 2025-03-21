@@ -48,13 +48,19 @@ const RecipeList = ({ recipes, loading }: RecipeListProps) => {
             <DescriptionTitle>{recipe.title}</DescriptionTitle>
             <DescriptionText summary={recipe.summary} />
             <RecipeButton
+              className='mb-2'
+              onClick={() => handleClick(recipe.summary)}
+            >
+              See summary
+            </RecipeButton>
+            <RecipeButton
               onClick={() =>
                 handleClick(
                   recipe.instructions || 'Instructions are not available yet'
                 )
               }
             >
-              See full recipe
+              See instructions
             </RecipeButton>
           </DescriptionContainer>
         </RecipeContainer>
