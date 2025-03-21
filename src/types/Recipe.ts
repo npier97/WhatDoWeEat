@@ -1,6 +1,8 @@
 export interface RecipeProps {
   id: number;
   title: string;
+  summary: string;
+  instructions?: string;
   image?: string;
   likes?: string;
   missedIngredientCount?: number;

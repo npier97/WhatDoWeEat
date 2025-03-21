@@ -12,7 +12,6 @@ import {
   RecipeContainer
 } from './components';
 import RecipeModal from './RecipeModal';
-import { isRandomRecipe } from '@/utils/typeGuards';
 
 const RecipeList = ({ recipes, loading }: RecipeListProps) => {
   const dispatch = useDispatch();
@@ -36,31 +35,30 @@ const RecipeList = ({ recipes, loading }: RecipeListProps) => {
 
   return (
     <>
-      {recipes.map((recipe, index) => {
-        const summary = isRandomRecipe(recipe) ? recipe.summary : recipe.title;
-        const instructions = isRandomRecipe(recipe)
-          ? recipe.instructions
-          : recipe.title;
-
-        return (
-          <RecipeContainer key={recipe.title} index={index}>
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              width='100%'
-              className='object-cover'
-              onError={(e) => (e.currentTarget.src = placeholderImage)}
-            />
-            <DescriptionContainer>
-              <DescriptionTitle>{recipe.title}</DescriptionTitle>
-              <DescriptionText summary={summary} />
-              <RecipeButton onClick={() => handleClick(instructions)}>
-                See full recipe
-              </RecipeButton>
-            </DescriptionContainer>
-          </RecipeContainer>
-        );
-      })}
+      {recipes.map((recipe, index) => (
+        <RecipeContainer key={recipe.title} index={index}>
+          <img
+            src={recipe.image}
+            alt={recipe.title}
+            width='100%'
+            className='object-cover'
+            onError={(e) => (e.currentTarget.src = placeholderImage)}
+          />
+          <DescriptionContainer>
+            <DescriptionTitle>{recipe.title}</DescriptionTitle>
+            <DescriptionText summary={recipe.summary} />
+            <RecipeButton
+              onClick={() =>
+                handleClick(
+                  recipe.instructions || 'Instructions are not available yet'
+                )
+              }
+            >
+              See full recipe
+            </RecipeButton>
+          </DescriptionContainer>
+        </RecipeContainer>
+      ))}
       <RecipeModal instructions={selectedRecipe} />
     </>
   );

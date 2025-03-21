@@ -4,6 +4,21 @@ import SuggestedRecipes from '.';
 import { renderWithProviders } from '@/tests/test-utils';
 
 describe('Suggested recipes', () => {
+  const defaultRecipeState = {
+    recipe: {
+      loading: false,
+      error: '',
+      recipes: [
+        {
+          id: 1,
+          title: 'Apple Pie',
+          summary: 'Some summary',
+          instructions: 'Some instructions about the recipe'
+        }
+      ]
+    }
+  };
+
   it('should render the current popular recipes by default', () => {
     renderWithProviders(<SuggestedRecipes />);
 
@@ -15,13 +30,7 @@ describe('Suggested recipes', () => {
   });
   it('should render the searched recipes when searching for recipes', () => {
     renderWithProviders(<SuggestedRecipes />, {
-      preloadedState: {
-        recipe: {
-          loading: false,
-          error: '',
-          recipes: [{ id: 1, title: 'Apple Pie' }]
-        }
-      }
+      preloadedState: defaultRecipeState
     });
 
     const searchedRecipes = screen.getByTestId('searched-recipes');
@@ -32,9 +41,8 @@ describe('Suggested recipes', () => {
     renderWithProviders(<SuggestedRecipes />, {
       preloadedState: {
         recipe: {
-          loading: true,
-          error: '',
-          recipes: [{ id: 1, title: 'Apple Pie' }]
+          ...defaultRecipeState.recipe,
+          loading: true
         }
       }
     });
@@ -57,7 +65,7 @@ describe('Suggested recipes', () => {
               id: 1,
               title: 'Random Salad',
               summary: 'Some salad recipe',
-              instructions: 'Some instructinos about the recipe'
+              instructions: 'Some instructions about the recipe'
             }
           ]
         }
