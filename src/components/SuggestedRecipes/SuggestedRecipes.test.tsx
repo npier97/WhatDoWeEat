@@ -8,6 +8,7 @@ describe('Suggested recipes', () => {
     recipe: {
       loading: false,
       error: '',
+      ingredients: [],
       recipes: [
         {
           id: 1,

@@ -24,6 +24,7 @@ export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
       recipe: {
         loading: false,
         error: '',
+        ingredients: [],
         recipes: []
       },
       recipeModal: {

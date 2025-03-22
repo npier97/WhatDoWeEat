@@ -8,13 +8,15 @@ import { setTags } from '@state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
 import { useFetchRandomRecipes } from '@/hooks/useFetchRandomRecipes';
-import { setRecipes } from '@state/recipeSlice';
+import { setIngredients, setRecipes } from '@state/recipeSlice';
 import { setRandomRecipes } from '@state/randomRecipeSlice';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>('');
-  const [ingredients, setIngredients] = useState<string[]>([]);
+  const ingredients = useSelector(
+    (state: RootState) => state.recipe.ingredients
+  );
   const tags = useSelector((state: RootState) => state.tag.tags);
 
   const { fetchRecipes } = useFetchRecipes();
@@ -36,11 +38,13 @@ const HeroActions = () => {
   const handleClick = () => {
     if (!inputValue && tags.length === 0) return;
 
-    const newItems = tags.filter((item) => !ingredients.includes(item));
+    const filteredTags = tags.filter((item) => !ingredients.includes(item));
+    const typedIngredient = !ingredients.includes(inputValue) ? inputValue : '';
 
-    setIngredients((prevIngredients) => [...prevIngredients, ...newItems]);
+    dispatch(setIngredients([typedIngredient, ...filteredTags]));
     dispatch(setTags([]));
     dispatch(setRandomRecipes([]));
+    setInputValue('');
   };
 
   const handleGenerationClick = () => {
