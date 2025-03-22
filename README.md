@@ -1,5 +1,7 @@
 # What Do We Eat (Still In Progress)
 
+https://npier97.github.io/WhatDoWeEat
+
 ## Overview
 
 **What Do We Eat** is a web application that suggests food recipes based on available ingredients in your fridge or cupboard. The goal is to help users reduce food waste and make meal planning easier.
