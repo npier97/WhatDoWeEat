@@ -1,14 +1,15 @@
 import { Navbar } from 'components-library';
 import Logo from '@assets/logo.png';
+import { PUBLIC_URL } from '@/constants';
 
 const Header = () => (
   <Navbar
     logo={<img src={Logo} alt='Logo' width={'50px'} />}
     brand='WhatDoWeEat'
-    brandHref={process.env.VITE_PUBLIC_URL}
+    brandHref={PUBLIC_URL}
     links={[
       {
-        href: `${process.env.VITE_PUBLIC_URL}`,
+        href: `${PUBLIC_URL}`,
         name: 'Home'
       }
     ]}
