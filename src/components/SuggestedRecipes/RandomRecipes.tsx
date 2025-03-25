@@ -4,19 +4,18 @@ import { Box } from 'components-library';
 import RecipeList from './RecipeList';
 
 const RandomRecipes = () => {
-  const randomRecipes = useSelector(
-    (state: RootState) => state.randomRecipe.recipes
+  const { recipes, loading } = useSelector(
+    (state: RootState) => state.randomRecipe
   );
-  const loading = useSelector((state: RootState) => state.randomRecipe.loading);
 
-  if (!randomRecipes?.length) return null;
+  if (!recipes?.length) return null;
 
   return (
     <Box
       className='flex max-[1023px]:flex-col gap-8'
       data-testid='random-recipes'
     >
-      <RecipeList recipes={randomRecipes} loading={loading} />
+      <RecipeList recipes={recipes} loading={loading} />
     </Box>
   );
 };

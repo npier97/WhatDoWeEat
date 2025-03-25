@@ -5,11 +5,10 @@ import { mockedRecipes } from '@mocks/mockedRecipes';
 import RecipeList from './RecipeList';
 
 const PopularRecipes = () => {
-  const recipes = useSelector((state: RootState) => state.recipe.recipes);
+  const { recipes, loading } = useSelector((state: RootState) => state.recipe);
   const randomRecipes = useSelector(
     (state: RootState) => state.randomRecipe.recipes
   );
-  const loading = useSelector((state: RootState) => state.recipe.loading);
 
   if ([recipes, randomRecipes].some((arr) => arr.length > 0)) return null;
 

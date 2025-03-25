@@ -4,8 +4,7 @@ import { Box } from 'components-library';
 import RecipeList from './RecipeList';
 
 const SearchedRecipes = () => {
-  const recipes = useSelector((state: RootState) => state.recipe.recipes);
-  const loading = useSelector((state: RootState) => state.recipe.loading);
+  const { recipes, loading } = useSelector((state: RootState) => state.recipe);
 
   if (!recipes?.length) return null;
 
