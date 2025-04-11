@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cacheReducer from '@state/cacheSlice';
 import randomRecipeReducer from '@state/randomRecipeSlice';
 import recipeReducer from '@state/recipeSlice';
 import recipeModalReducer from '@state/recipeModal';
@@ -11,16 +10,12 @@ import { RootState } from '@/store';
 export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
   return configureStore({
     reducer: {
-      cache: cacheReducer,
       randomRecipe: randomRecipeReducer,
       recipe: recipeReducer,
       recipeModal: recipeModalReducer,
       tag: tagReducer
     },
     preloadedState: {
-      cache: {
-        cachedRecipes: {}
-      },
       randomRecipe: {
         loading: false,
         error: '',
@@ -30,7 +25,8 @@ export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
         loading: false,
         error: '',
         ingredients: [],
-        recipes: []
+        recipes: [],
+        queryParams: ''
       },
       recipeModal: {
         isOpen: false

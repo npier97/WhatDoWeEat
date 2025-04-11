@@ -1,31 +1,22 @@
-import {
-  setError,
-  setLoading,
-  setRandomRecipes
-} from '@components/state/randomRecipeSlice';
-import { useCallback } from 'react';
+import { setRandomRecipes } from '@/components/state/randomRecipeSlice';
+import { setRecipes } from '@/components/state/recipeSlice';
 import { useDispatch } from 'react-redux';
 import { API_KEY } from '@/constants';
-import { RandomRecipeResponse } from '@/types/RandomRecipe';
+import { RandomRecipeProps, RandomRecipeResponse } from '@/types/RandomRecipe';
 import { fetchData } from '@utils/fetch';
 
 export const useFetchRandomRecipes = () => {
   const dispatch = useDispatch();
+  const fetchRandomRecipes = async (): Promise<RandomRecipeProps[]> => {
+    const data = await fetchData<RandomRecipeResponse>(
+      `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=3`
+    );
 
-  const fetchRandomRecipes = useCallback(async () => {
-    dispatch(setLoading(true));
-    try {
-      const data = await fetchData<RandomRecipeResponse>(
-        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=3`
-      );
-      dispatch(setRandomRecipes(data.recipes));
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      dispatch(setError('Failed to fetch random recipes'));
-    } finally {
-      setTimeout(() => dispatch(setLoading(false)), 300);
-    }
-  }, [dispatch]);
+    dispatch(setRandomRecipes(data.recipes));
+    dispatch(setRecipes([]));
+
+    return data.recipes;
+  };
 
   return { fetchRandomRecipes };
 };

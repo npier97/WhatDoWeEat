@@ -16,7 +16,8 @@ describe('Suggested recipes', () => {
           summary: 'Some summary',
           instructions: 'Some instructions about the recipe'
         }
-      ]
+      ],
+      queryParams: ''
     }
   };
 
@@ -60,7 +61,6 @@ describe('Suggested recipes', () => {
       preloadedState: {
         randomRecipe: {
           loading: false,
-          error: '',
           recipes: [
             {
               id: 1,

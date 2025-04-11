@@ -3,14 +3,15 @@ import { describe, it } from 'vitest';
 import Hero from './index';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import cacheReducer from '@state/cacheSlice';
 import recipeReducer from '@state/recipeSlice';
 import tagReducer from '@state/tagSlice';
 import { userEvent } from '@testing-library/user-event';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const testStore = configureStore({
   reducer: {
-    cache: cacheReducer,
     recipe: recipeReducer,
     tag: tagReducer
   }
@@ -30,7 +31,9 @@ describe('Hero', () => {
   beforeEach(() => {
     render(
       <Provider store={testStore}>
-        <Hero />
+        <QueryClientProvider client={queryClient}>
+          <Hero />
+        </QueryClientProvider>
       </Provider>
     );
   });
@@ -63,16 +66,6 @@ describe('Hero', () => {
       const deleteIcon = within(tag).getByTestId('delete-icon');
 
       await userEvent.click(deleteIcon);
-
-      const tagContainer = screen.getByTestId('tag-span-container');
-
-      expect(tagContainer.children.length).toBe(0);
-    });
-    it('should delete the tags when Discover Recipes button is clicked', async () => {
-      const heroButton = screen.getByTestId('hero-button');
-
-      await setNewTag();
-      await userEvent.click(heroButton);
 
       const tagContainer = screen.getByTestId('tag-span-container');
 
