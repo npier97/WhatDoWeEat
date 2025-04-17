@@ -5,7 +5,7 @@ import { mockedRecipes } from '@mocks/mockedRecipes';
 import RecipeList from './RecipeList';
 
 const PopularRecipes = () => {
-  const { recipes, loading } = useSelector((state: RootState) => state.recipe);
+  const { recipes } = useSelector((state: RootState) => state.recipe);
   const randomRecipes = useSelector(
     (state: RootState) => state.randomRecipe.recipes
   );
@@ -18,7 +18,7 @@ const PopularRecipes = () => {
         className='flex max-[1023px]:flex-col gap-8'
         data-testid='popular-recipes'
       >
-        <RecipeList recipes={mockedRecipes} loading={loading} />
+        <RecipeList recipes={mockedRecipes} />
       </Box>
     </>
   );

@@ -2,14 +2,14 @@ import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
 import { useEffect, useState } from 'react';
 import { preventSpecialCharacters } from '@utils/string';
-import { useFetchRecipes } from '@hooks/useFetchRecipes';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTags } from '@state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
-import { useFetchRandomRecipes } from '@/hooks/useFetchRandomRecipes';
-import { setIngredients, setRecipes } from '@state/recipeSlice';
+import { setIngredients, setQueryParams } from '@state/recipeSlice';
 import { setRandomRecipes } from '@state/randomRecipeSlice';
+import { useQuery } from '@tanstack/react-query';
+import { useFetchRecipes } from '@/hooks/useFetchRecipes';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
@@ -17,10 +17,18 @@ const HeroActions = () => {
   const ingredients = useSelector(
     (state: RootState) => state.recipe.ingredients
   );
+  const queryParams = useSelector(
+    (state: RootState) => state.recipe.queryParams
+  );
   const tags = useSelector((state: RootState) => state.tag.tags);
 
   const { fetchRecipes } = useFetchRecipes();
-  const { fetchRandomRecipes } = useFetchRandomRecipes();
+
+  const { isFetching, refetch } = useQuery({
+    queryKey: ['recipes', queryParams],
+    queryFn: () => fetchRecipes(queryParams),
+    enabled: false
+  });
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
@@ -41,23 +49,18 @@ const HeroActions = () => {
     const filteredTags = tags.filter((item) => !ingredients.includes(item));
     const typedIngredient = !ingredients.includes(inputValue) ? inputValue : '';
 
+    dispatch(setQueryParams([...filteredTags, typedIngredient].join(',')));
     dispatch(setIngredients([typedIngredient, ...filteredTags]));
     dispatch(setTags([]));
     dispatch(setRandomRecipes([]));
     setInputValue('');
   };
 
-  const handleGenerationClick = () => {
-    fetchRandomRecipes();
-    dispatch(setRecipes([]));
-  };
-
   useEffect(() => {
-    if (ingredients.length > 0) {
-      const queryParams = ingredients.join(',+');
-      fetchRecipes(queryParams);
+    if (queryParams) {
+      refetch();
     }
-  }, [ingredients]);
+  }, [queryParams]);
 
   return (
     <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
@@ -71,10 +74,15 @@ const HeroActions = () => {
         data-testid='hero-input'
         aria-label='Search input'
       />
-      <HeroButton onClick={handleClick} data-testid='hero-button'>
-        Search recipes
+      {/*TODO: handle button color change on fetching and refactor queryParams handler*/}
+      <HeroButton
+        onClick={handleClick}
+        data-testid='hero-button'
+        disabled={isFetching}
+      >
+        {isFetching ? 'Searching...' : 'Search recipes'}
       </HeroButton>
-      <RandomRecipeGenerator onClick={handleGenerationClick} />
+      <RandomRecipeGenerator />
     </Box>
   );
 };
