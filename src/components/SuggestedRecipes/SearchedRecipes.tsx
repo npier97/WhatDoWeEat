@@ -4,7 +4,7 @@ import { Box } from 'components-library';
 import RecipeList from './RecipeList';
 
 const SearchedRecipes = () => {
-  const { recipes, loading } = useSelector((state: RootState) => state.recipe);
+  const { recipes } = useSelector((state: RootState) => state.recipe);
 
   if (!recipes?.length) return null;
 
@@ -13,7 +13,7 @@ const SearchedRecipes = () => {
       className='flex max-[1023px]:flex-col gap-8'
       data-testid='searched-recipes'
     >
-      <RecipeList recipes={recipes} loading={loading} />
+      <RecipeList recipes={recipes} />
     </Box>
   );
 };

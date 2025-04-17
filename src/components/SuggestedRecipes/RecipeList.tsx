@@ -12,9 +12,11 @@ import {
   RecipeContainer
 } from './components';
 import RecipeModal from './RecipeModal';
+import { useIsFetching } from '@tanstack/react-query';
 
-const RecipeList = ({ recipes, loading }: RecipeListProps) => {
+const RecipeList = ({ recipes }: RecipeListProps) => {
   const dispatch = useDispatch();
+  const isFetching = useIsFetching({ queryKey: ['recipes'] });
   const [selectedRecipe, setSelectedRecipe] = useState('');
   const placeholderImage = 'images/placeholder.webp';
 
@@ -23,7 +25,7 @@ const RecipeList = ({ recipes, loading }: RecipeListProps) => {
     dispatch(setIsOpen(true));
   };
 
-  if (loading)
+  if (isFetching > 0)
     return (
       <Box
         className='h-95 flex items-center gap-8'
