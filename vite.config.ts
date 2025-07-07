@@ -10,9 +10,6 @@ dotenv.config();
 // https://vite.dev/config/
 export default defineConfig({
   base: '/WhatDoWeEat/',
-  define: {
-    'process.env': process.env
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
