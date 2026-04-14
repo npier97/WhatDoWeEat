@@ -1,6 +1,6 @@
 import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { preventSpecialCharacters } from '@utils/string';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTags } from '@state/tagSlice';
@@ -24,10 +24,10 @@ const HeroActions = () => {
 
   const { fetchRecipes } = useFetchRecipes();
 
-  const { isFetching, refetch } = useQuery({
+  const { isFetching } = useQuery({
     queryKey: ['recipes', queryParams],
     queryFn: () => fetchRecipes(queryParams),
-    enabled: false
+    enabled: Boolean(queryParams)
   });
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -55,12 +55,6 @@ const HeroActions = () => {
     dispatch(setRandomRecipes([]));
     setInputValue('');
   };
-
-  useEffect(() => {
-    if (queryParams) {
-      refetch();
-    }
-  }, [queryParams]);
 
   return (
     <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
