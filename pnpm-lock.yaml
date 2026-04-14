@@ -18,8 +18,8 @@ importers:
         specifier: ^5.90.21
         version: 5.90.21(react@19.2.4)
       components-library:
-        specifier: github:npier97/Components-Library#v2.0.0
-        version: https://codeload.github.com/npier97/Components-Library/tar.gz/361f945c572c08439295139de32500e3fb818363(autoprefixer@10.4.24(postcss@8.5.6))(postcss@8.5.6)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(tailwindcss@4.2.1)
+        specifier: github:npier97/Components-Library#v3.0.0
+        version: https://codeload.github.com/npier97/Components-Library/tar.gz/b489a97e36f587606452b405807e6f2becc1db09(autoprefixer@10.4.24(postcss@8.5.6))(postcss@8.5.6)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(tailwindcss@4.2.1)
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -1191,9 +1191,9 @@ packages:
   commondir@1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
 
-  components-library@https://codeload.github.com/npier97/Components-Library/tar.gz/361f945c572c08439295139de32500e3fb818363:
-    resolution: {tarball: https://codeload.github.com/npier97/Components-Library/tar.gz/361f945c572c08439295139de32500e3fb818363}
-    version: 2.0.0
+  components-library@https://codeload.github.com/npier97/Components-Library/tar.gz/b489a97e36f587606452b405807e6f2becc1db09:
+    resolution: {tarball: https://codeload.github.com/npier97/Components-Library/tar.gz/b489a97e36f587606452b405807e6f2becc1db09}
+    version: 3.0.0
     peerDependencies:
       autoprefixer: ^10.4.20
       postcss: ^8.5.3
@@ -3752,7 +3752,7 @@ snapshots:
 
   commondir@1.0.1: {}
 
-  components-library@https://codeload.github.com/npier97/Components-Library/tar.gz/361f945c572c08439295139de32500e3fb818363(autoprefixer@10.4.24(postcss@8.5.6))(postcss@8.5.6)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(tailwindcss@4.2.1):
+  components-library@https://codeload.github.com/npier97/Components-Library/tar.gz/b489a97e36f587606452b405807e6f2becc1db09(autoprefixer@10.4.24(postcss@8.5.6))(postcss@8.5.6)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(tailwindcss@4.2.1):
     dependencies:
       '@types/node': 22.19.11
       autoprefixer: 10.4.24(postcss@8.5.6)
