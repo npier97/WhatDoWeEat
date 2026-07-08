@@ -33,7 +33,7 @@ export const HeroInput = (props: React.ComponentProps<typeof Input>) => (
 export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
-    className='w-full max-w-xs lg:!w-[150px] bg-primary hover:bg-accent-dark shadow-2xl'
+    className='w-full max-w-xs lg:w-37.5! bg-primary hover:bg-accent-dark shadow-2xl'
     aria-label='Discover recipes'
   />
 );

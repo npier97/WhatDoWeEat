@@ -1,5 +1,4 @@
 import { HeroContainer, HeroSubtitle, HeroTitle } from './components';
-import HeroTag from './HeroTag';
 import HeroActions from './HeroActions';
 
 const Hero = () => (
@@ -7,7 +6,6 @@ const Hero = () => (
     <HeroTitle>What&apos;s In Your Fridge?</HeroTitle>
     <HeroSubtitle>Unleash culinary creativity with what you have!</HeroSubtitle>
     <HeroActions />
-    <HeroTag />
   </HeroContainer>
 );
 

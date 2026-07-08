@@ -7,7 +7,11 @@ import { useEffect } from 'react';
 import { setRandomRecipes } from '../state/randomRecipeSlice';
 import { setRecipes } from '../state/recipeSlice';
 
-const RandomRecipeGenerator = () => {
+const RandomRecipeGenerator = ({
+  onRandomSearch
+}: {
+  onRandomSearch: (value: boolean) => void;
+}) => {
   const dispatch = useDispatch();
 
   const {
@@ -20,7 +24,10 @@ const RandomRecipeGenerator = () => {
     enabled: false
   });
 
-  const handleGenerationClick = () => refetch();
+  const handleGenerationClick = () => {
+    refetch();
+    onRandomSearch(false);
+  };
 
   useEffect(() => {
     if (randomRecipes) {

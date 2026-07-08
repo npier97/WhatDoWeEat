@@ -15,6 +15,7 @@ import { setRandomRecipes } from '@/components/state/randomRecipeSlice';
 import { useQuery } from '@tanstack/react-query';
 import { fetchRecipesByIngredients } from '@/api/recipes';
 import { buildIngredientsList, buildQueryParams } from '@/utils/ingredients';
+import HeroTag from './HeroTag';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const HeroActions = () => {
     (state: RootState) => state.recipe.queryParams
   );
   const tags = useSelector((state: RootState) => state.tag.tags);
+  const [hasAttemptedEmptySearch, setHasAttemptedEmptySearch] = useState(false);
 
   const { data: recipes, isFetching } = useQuery({
     queryKey: ['recipes', queryParams],
@@ -43,12 +45,17 @@ const HeroActions = () => {
 
       dispatch(setTags([...tags, inputValue]));
       setInputValue('');
+      setHasAttemptedEmptySearch(false);
     }
   };
 
   const handleClick = () => {
-    if (!inputValue && tags.length === 0) return;
+    if (!inputValue && tags.length === 0) {
+      setHasAttemptedEmptySearch(true);
+      return;
+    }
 
+    setHasAttemptedEmptySearch(false);
     dispatch(setQueryParams(buildQueryParams(tags, ingredients, inputValue)));
     dispatch(
       setIngredients(buildIngredientsList(tags, ingredients, inputValue))
@@ -67,26 +74,29 @@ const HeroActions = () => {
   }, [recipes, dispatch]);
 
   return (
-    <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
-      <HeroInput
-        name='ingredients'
-        type='text'
-        value={inputValue}
-        placeholder='Type an ingredient and press Enter or Space'
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        data-testid='hero-input'
-        aria-label='Search input'
-      />
-      <HeroButton
-        onClick={handleClick}
-        data-testid='hero-button'
-        disabled={isFetching}
-      >
-        {isFetching ? 'Searching...' : 'Search recipes'}
-      </HeroButton>
-      <RandomRecipeGenerator />
-    </Box>
+    <>
+      <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
+        <HeroInput
+          name='ingredients'
+          type='text'
+          value={inputValue}
+          placeholder='Type an ingredient and press Enter or Space'
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          data-testid='hero-input'
+          aria-label='Search input'
+        />
+        <HeroButton
+          onClick={handleClick}
+          data-testid='hero-button'
+          disabled={isFetching}
+        >
+          {isFetching ? 'Searching...' : 'Search recipes'}
+        </HeroButton>
+        <RandomRecipeGenerator onRandomSearch={setHasAttemptedEmptySearch} />
+      </Box>
+      <HeroTag isInputEmpty={hasAttemptedEmptySearch} />
+    </>
   );
 };
 
