@@ -1,10 +1,10 @@
 import { IngredientProps, RecipeProps } from './Recipe';
 
 export interface RandomRecipeResponse {
-  recipes: RandomRecipeProps[];
+  recipes: RecipeDetailProps[];
 }
 
-export type RandomRecipeProps = RecipeProps & {
+export type RecipeDetailProps = RecipeProps & {
   summary: string;
   instructions: string;
   extendedIngredients?: IngredientProps[];

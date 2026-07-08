@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RandomRecipeProps } from '@/types/RandomRecipe';
+import { RecipeDetailProps } from '@/types/RecipeDetail';
 
 export interface RandomRecipeState {
-  recipes: RandomRecipeProps[];
+  recipes: RecipeDetailProps[];
 }
 
 const initialState: RandomRecipeState = {
@@ -13,7 +13,7 @@ const randomRecipeSlice = createSlice({
   name: 'random recipe',
   initialState,
   reducers: {
-    setRandomRecipes: (state, action: PayloadAction<RandomRecipeProps[]>) => {
+    setRandomRecipes: (state, action: PayloadAction<RecipeDetailProps[]>) => {
       state.recipes = action.payload;
     }
   }

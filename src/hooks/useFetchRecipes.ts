@@ -1,7 +1,7 @@
 import { API_KEY } from '@/constants';
 import { RecipeProps } from '@/types/Recipe';
 import { fetchData } from '@utils/fetch';
-import { RandomRecipeProps } from '@/types/RandomRecipe';
+import { RecipeDetailProps } from '@/types/RecipeDetail';
 import { useDispatch } from 'react-redux';
 import {
   setIngredients,
@@ -20,7 +20,7 @@ export const useFetchRecipes = () => {
 
     const recipesInfoData = await Promise.all(
       recipes.map((recipe) =>
-        fetchData<RandomRecipeProps>(
+        fetchData<RecipeDetailProps>(
           `https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${API_KEY}`
         )
       )

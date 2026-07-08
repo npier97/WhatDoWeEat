@@ -15,7 +15,6 @@ const RandomRecipeGenerator = () => {
   const handleGenerationClick = () => refetch();
 
   return (
-    //TODO: handle button color change on fetching
     <GenerateRecipeButton
       onClick={handleGenerationClick}
       data-testid='random-recipe-generator'

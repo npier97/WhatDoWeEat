@@ -68,7 +68,6 @@ const HeroActions = () => {
         data-testid='hero-input'
         aria-label='Search input'
       />
-      {/*TODO: handle button color change on fetching and refactor queryParams handler*/}
       <HeroButton
         onClick={handleClick}
         data-testid='hero-button'
