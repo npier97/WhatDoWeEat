@@ -7,6 +7,7 @@ import recipeReducer from '@state/recipeSlice';
 import tagReducer from '@state/tagSlice';
 import { userEvent } from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { buildQueryParams } from '@/utils/ingredients';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,14 @@ describe('Hero', () => {
       const tagContainer = screen.getByTestId('tag-span-container');
 
       expect(tagContainer.children.length).toBe(0);
+    });
+  });
+  describe('buildQueryParams', () => {
+    it('excludes an already-selected ingredient without leaving a trailing comma', () => {
+      expect(buildQueryParams(['onion'], ['onion'], '')).toBe('');
+      expect(buildQueryParams(['onion', 'garlic'], ['onion'], '')).toBe(
+        'garlic'
+      );
     });
   });
 });

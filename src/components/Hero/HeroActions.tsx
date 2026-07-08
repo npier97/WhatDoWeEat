@@ -1,15 +1,16 @@
 import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { preventSpecialCharacters } from '@utils/string';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTags } from '@state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
-import { setIngredients, setQueryParams } from '@state/recipeSlice';
+import { setIngredients, setQueryParams, setRecipes } from '@state/recipeSlice';
 import { setRandomRecipes } from '@state/randomRecipeSlice';
 import { useQuery } from '@tanstack/react-query';
-import { useFetchRecipes } from '@/hooks/useFetchRecipes';
+import { fetchRecipesByIngredients } from '@/api/recipes';
+import { buildIngredientsList, buildQueryParams } from '@/utils/ingredients';
 
 const HeroActions = () => {
   const dispatch = useDispatch();
@@ -22,11 +23,9 @@ const HeroActions = () => {
   );
   const tags = useSelector((state: RootState) => state.tag.tags);
 
-  const { fetchRecipes } = useFetchRecipes();
-
-  const { isFetching } = useQuery({
+  const { data: recipes, isFetching } = useQuery({
     queryKey: ['recipes', queryParams],
-    queryFn: () => fetchRecipes(queryParams),
+    queryFn: () => fetchRecipesByIngredients(queryParams),
     enabled: Boolean(queryParams)
   });
 
@@ -46,15 +45,22 @@ const HeroActions = () => {
   const handleClick = () => {
     if (!inputValue && tags.length === 0) return;
 
-    const filteredTags = tags.filter((item) => !ingredients.includes(item));
-    const typedIngredient = !ingredients.includes(inputValue) ? inputValue : '';
-
-    dispatch(setQueryParams([...filteredTags, typedIngredient].join(',')));
-    dispatch(setIngredients([typedIngredient, ...filteredTags]));
+    dispatch(setQueryParams(buildQueryParams(tags, ingredients, inputValue)));
+    dispatch(
+      setIngredients(buildIngredientsList(tags, ingredients, inputValue))
+    );
     dispatch(setTags([]));
     dispatch(setRandomRecipes([]));
     setInputValue('');
   };
+
+  useEffect(() => {
+    if (recipes) {
+      dispatch(setRecipes(recipes));
+      dispatch(setIngredients([]));
+      dispatch(setQueryParams(''));
+    }
+  }, [recipes, dispatch]);
 
   return (
     <Box className='w-full mb-4 flex max-[1023px]:flex-col items-center justify-center gap-4'>
