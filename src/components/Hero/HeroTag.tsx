@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TagContainer, TagSpan } from './components';
-import DeleteIcon from '@icons/DeleteIcon';
+import DeleteIcon from '@/icons/DeleteIcon';
 import { RootState } from '@/store';
-import { setTags } from '@state/tagSlice';
+import { setTags } from '@/components/state/tagSlice';
 
 const HeroTag = () => {
   const dispatch = useDispatch();

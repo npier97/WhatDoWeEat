@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import randomRecipeReducer from '@state/randomRecipeSlice';
-import recipeReducer from '@state/recipeSlice';
-import recipeModalReducer from '@state/recipeModal';
-import tagReducer from '@state/tagSlice';
+import randomRecipeReducer from '@/components/state/randomRecipeSlice';
+import recipeReducer from '@/components/state/recipeSlice';
+import recipeModalReducer from '@/components/state/recipeModal';
+import tagReducer from '@/components/state/tagSlice';
 import { render, RenderResult } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { RootState } from '@/store';

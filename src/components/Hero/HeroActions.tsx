@@ -1,13 +1,17 @@
 import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
 import { useEffect, useState } from 'react';
-import { preventSpecialCharacters } from '@utils/string';
+import { preventSpecialCharacters } from '@/utils/string';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTags } from '@state/tagSlice';
+import { setTags } from '@/components/state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
-import { setIngredients, setQueryParams, setRecipes } from '@state/recipeSlice';
-import { setRandomRecipes } from '@state/randomRecipeSlice';
+import {
+  setIngredients,
+  setQueryParams,
+  setRecipes
+} from '@/components/state/recipeSlice';
+import { setRandomRecipes } from '@/components/state/randomRecipeSlice';
 import { useQuery } from '@tanstack/react-query';
 import { fetchRecipesByIngredients } from '@/api/recipes';
 import { buildIngredientsList, buildQueryParams } from '@/utils/ingredients';

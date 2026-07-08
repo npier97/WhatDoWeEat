@@ -1,9 +1,9 @@
 import { RecipeListProps } from '@/types/RecipeList';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { setIsOpen } from '@state/recipeModal';
+import { setIsOpen } from '@/components/state/recipeModal';
 import { Box } from 'components-library';
-import { Spinner } from '@components/Spinner';
+import { Spinner } from '@/components/Spinner';
 import {
   DescriptionContainer,
   DescriptionText,

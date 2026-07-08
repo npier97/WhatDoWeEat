@@ -1,7 +1,7 @@
 import { Box } from 'components-library';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { mockedRecipes } from '@mocks/mockedRecipes';
+import { mockedRecipes } from '@/mocks/mockedRecipes';
 import RecipeList from './RecipeList';
 
 const PopularRecipes = () => {

@@ -1,5 +1,5 @@
 import { Navbar } from 'components-library';
-import Logo from '@assets/logo.png';
+import Logo from '@/assets/logo.png';
 import { PUBLIC_URL } from '@/constants';
 
 const Header = () => (
