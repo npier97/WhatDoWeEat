@@ -27,7 +27,8 @@ const HeroActions = () => {
     (state: RootState) => state.recipe.queryParams
   );
   const tags = useSelector((state: RootState) => state.tag.tags);
-  const [hasAttemptedEmptySearch, setHasAttemptedEmptySearch] = useState(false);
+  const [hasAttemptedEmptySearch, setHasAttemptedEmptySearch] =
+    useState<boolean>(false);
 
   const { data: recipes, isFetching } = useQuery({
     queryKey: ['recipes', queryParams],

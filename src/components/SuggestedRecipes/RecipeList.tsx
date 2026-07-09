@@ -17,7 +17,7 @@ import { useIsFetching } from '@tanstack/react-query';
 const RecipeList = ({ recipes }: RecipeListProps) => {
   const dispatch = useDispatch();
   const isFetching = useIsFetching({ queryKey: ['recipes'] });
-  const [selectedRecipe, setSelectedRecipe] = useState('');
+  const [selectedRecipe, setSelectedRecipe] = useState<string>('');
   const placeholderImage = 'images/placeholder.webp';
 
   const handleClick = (description: string) => {
