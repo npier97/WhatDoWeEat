@@ -3,6 +3,7 @@ import { Modal, Text } from 'components-library';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsOpen } from '../state/recipeModal';
 import { RecipeButton } from './components';
+import { sanitizeHtml } from '@/utils/sanitizeHtml';
 
 const RecipeModal = ({ instructions }: { instructions: string }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const RecipeModal = ({ instructions }: { instructions: string }) => {
     >
       <Text
         className='pb-4'
-        dangerouslySetInnerHTML={{ __html: instructions }}
+        dangerouslySetInnerHTML={{ __html: sanitizeHtml(instructions) }}
       />
       <RecipeButton onClick={handleClose}>Close</RecipeButton>
     </Modal>

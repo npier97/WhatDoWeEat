@@ -1,6 +1,6 @@
 import { API_KEY } from '@/constants';
 import { RecipeProps } from '@/types/Recipe';
-import { RandomRecipeResponse, RecipeDetailProps } from '@/types/RecipeDetail'; // renamed from RandomRecipeProps
+import { RandomRecipeResponse, RecipeDetailProps } from '@/types/RecipeDetail';
 import { fetchData } from '@/utils/fetch';
 
 const RESULTS_LIMIT = 3;

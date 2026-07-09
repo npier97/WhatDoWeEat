@@ -1,4 +1,5 @@
 import { RecipeContainerProps } from '@/types/Recipe';
+import { sanitizeHtml } from '@/utils/sanitizeHtml';
 import { Button, Stack, Text } from 'components-library';
 
 export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
@@ -42,6 +43,6 @@ export const DescriptionTitle = ({
 export const DescriptionText = ({ summary }: { summary: string }) => (
   <Text
     className='mb-8 line-clamp-5'
-    dangerouslySetInnerHTML={{ __html: summary }}
+    dangerouslySetInnerHTML={{ __html: sanitizeHtml(summary) }}
   />
 );
