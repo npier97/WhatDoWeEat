@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { TagContainer, TagItem, TagRemoveButton } from './components';
 import DeleteIcon from '@/icons/DeleteIcon';
-import { RootState } from '@/store';
 import { removeTag } from '@/components/state/tagSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 const HeroTag = ({ isInputEmpty }: { isInputEmpty: boolean }) => {
-  const dispatch = useDispatch();
-  const tags = useSelector((state: RootState) => state.tag.tags);
+  const dispatch = useAppDispatch();
+  const tags = useAppSelector((state) => state.tag.tags);
 
   if (isInputEmpty) {
     return (

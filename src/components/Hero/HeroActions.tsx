@@ -2,9 +2,8 @@ import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
 import { useEffect, useState } from 'react';
 import { preventSpecialCharacters } from '@/utils/string';
-import { useDispatch, useSelector } from 'react-redux';
 import { addTag, clearTags } from '@/components/state/tagSlice';
-import { RootState } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
 import {
   setIngredients,
@@ -18,15 +17,11 @@ import { buildIngredientsList, buildQueryParams } from '@/utils/ingredients';
 import HeroTag from './HeroTag';
 
 const HeroActions = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>('');
-  const ingredients = useSelector(
-    (state: RootState) => state.recipe.ingredients
-  );
-  const queryParams = useSelector(
-    (state: RootState) => state.recipe.queryParams
-  );
-  const tags = useSelector((state: RootState) => state.tag.tags);
+  const ingredients = useAppSelector((state) => state.recipe.ingredients);
+  const queryParams = useAppSelector((state) => state.recipe.queryParams);
+  const tags = useAppSelector((state) => state.tag.tags);
   const [hasAttemptedEmptySearch, setHasAttemptedEmptySearch] =
     useState<boolean>(false);
 

@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { Box } from 'components-library';
 import RecipeList from './RecipeList';
+import { useAppSelector } from '@/hooks';
 
 const SearchedRecipes = () => {
-  const { recipes } = useSelector((state: RootState) => state.recipe);
+  const { recipes } = useAppSelector((state) => state.recipe);
 
   if (!recipes?.length) return null;
 

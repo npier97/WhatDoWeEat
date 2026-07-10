@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { Box } from 'components-library';
 import RecipeList from './RecipeList';
+import { useAppSelector } from '@/hooks';
 
 const RandomRecipes = () => {
-  const { recipes } = useSelector((state: RootState) => state.randomRecipe);
+  const { recipes } = useAppSelector((state) => state.randomRecipe);
 
   if (!recipes?.length) return null;
 

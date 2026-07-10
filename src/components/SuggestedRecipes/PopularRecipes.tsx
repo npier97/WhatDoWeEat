@@ -1,14 +1,11 @@
 import { Box } from 'components-library';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { mockedRecipes } from '@/mocks/mockedRecipes';
 import RecipeList from './RecipeList';
+import { useAppSelector } from '@/hooks';
 
 const PopularRecipes = () => {
-  const { recipes } = useSelector((state: RootState) => state.recipe);
-  const randomRecipes = useSelector(
-    (state: RootState) => state.randomRecipe.recipes
-  );
+  const { recipes } = useAppSelector((state) => state.recipe);
+  const randomRecipes = useAppSelector((state) => state.randomRecipe.recipes);
 
   if ([recipes, randomRecipes].some((arr) => arr.length > 0)) return null;
 

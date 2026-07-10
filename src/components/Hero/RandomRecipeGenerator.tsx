@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import SparkleIcon from '@/icons/SparkeIcon';
 import { GenerateRecipeButton } from './components';
 import { useQuery } from '@tanstack/react-query';
@@ -6,6 +5,7 @@ import { fetchRandomRecipes } from '@/api/recipes';
 import { useEffect } from 'react';
 import { setRandomRecipes } from '../state/randomRecipeSlice';
 import { setRecipes } from '../state/recipeSlice';
+import { useAppDispatch } from '@/hooks';
 import { clearTags } from '../state/tagSlice';
 
 const RandomRecipeGenerator = ({
@@ -13,7 +13,7 @@ const RandomRecipeGenerator = ({
 }: {
   onRandomSearch: (value: boolean) => void;
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     data: randomRecipes,
