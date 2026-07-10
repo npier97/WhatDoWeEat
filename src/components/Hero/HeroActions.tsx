@@ -3,7 +3,7 @@ import { HeroButton, HeroInput } from './components';
 import { useEffect, useState } from 'react';
 import { preventSpecialCharacters } from '@/utils/string';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTags } from '@/components/state/tagSlice';
+import { addTag, clearTags } from '@/components/state/tagSlice';
 import { RootState } from '@/store';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
 import {
@@ -42,9 +42,9 @@ const HeroActions = () => {
     if (event.code === 'Space' || event.code === 'Enter') {
       event.preventDefault();
 
-      if (!inputValue || tags.includes(inputValue)) return;
+      if (!inputValue.trim()) return;
 
-      dispatch(setTags([...tags, inputValue]));
+      dispatch(addTag(inputValue));
       setInputValue('');
       setHasAttemptedEmptySearch(false);
     }
@@ -61,7 +61,7 @@ const HeroActions = () => {
     dispatch(
       setIngredients(buildIngredientsList(tags, ingredients, inputValue))
     );
-    dispatch(setTags([]));
+    dispatch(clearTags());
     dispatch(setRandomRecipes([]));
     setInputValue('');
   };

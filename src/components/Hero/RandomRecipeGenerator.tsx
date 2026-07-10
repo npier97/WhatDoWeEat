@@ -6,6 +6,7 @@ import { fetchRandomRecipes } from '@/api/recipes';
 import { useEffect } from 'react';
 import { setRandomRecipes } from '../state/randomRecipeSlice';
 import { setRecipes } from '../state/recipeSlice';
+import { clearTags } from '../state/tagSlice';
 
 const RandomRecipeGenerator = ({
   onRandomSearch
@@ -26,6 +27,7 @@ const RandomRecipeGenerator = ({
 
   const handleGenerationClick = () => {
     refetch();
+    dispatch(clearTags());
     onRandomSearch(false);
   };
 
