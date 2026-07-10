@@ -4,6 +4,7 @@ import SuggestedRecipes from '.';
 import { renderWithProviders } from '@/tests/test-utils';
 import { vi } from 'vitest';
 import * as ReactQuery from '@tanstack/react-query';
+import { userEvent } from '@testing-library/user-event';
 
 describe('Suggested recipes', () => {
   const defaultRecipeState = {
@@ -39,6 +40,20 @@ describe('Suggested recipes', () => {
     const searchedRecipes = screen.getByTestId('searched-recipes');
 
     expect(searchedRecipes).toBeInTheDocument();
+  });
+  it('should open and close a recipe modal using local state', async () => {
+    renderWithProviders(<SuggestedRecipes />, {
+      preloadedState: defaultRecipeState
+    });
+
+    await userEvent.click(screen.getByRole('button', { name: 'See summary' }));
+
+    const dialog = screen.getByRole('dialog');
+    expect(within(dialog).getByText('Some summary')).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Close' }));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
   it.skip('should render the spinner when searching for recipes', () => {
     vi.spyOn(ReactQuery, 'useIsFetching').mockReturnValue(1);

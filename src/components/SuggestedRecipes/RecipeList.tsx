@@ -1,7 +1,5 @@
 import { RecipeListProps } from '@/types/RecipeList';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { setIsOpen } from '@/components/state/recipeModal';
 import { Box } from 'components-library';
 import { Spinner } from '@/components/Spinner';
 import {
@@ -15,15 +13,17 @@ import RecipeModal from './RecipeModal';
 import { useIsFetching } from '@tanstack/react-query';
 
 const RecipeList = ({ recipes }: RecipeListProps) => {
-  const dispatch = useDispatch();
   const isFetching = useIsFetching({ queryKey: ['recipes'] });
   const [selectedRecipe, setSelectedRecipe] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const placeholderImage = 'images/placeholder.webp';
 
   const handleClick = (description: string) => {
     setSelectedRecipe(description);
-    dispatch(setIsOpen(true));
+    setIsModalOpen(true);
   };
+
+  const handleModalClose = () => setIsModalOpen(false);
 
   if (isFetching > 0)
     return (
@@ -64,7 +64,11 @@ const RecipeList = ({ recipes }: RecipeListProps) => {
           </DescriptionContainer>
         </RecipeContainer>
       ))}
-      <RecipeModal instructions={selectedRecipe} />
+      <RecipeModal
+        instructions={selectedRecipe}
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+      />
     </>
   );
 };

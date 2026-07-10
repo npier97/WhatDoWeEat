@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import randomRecipeReducer from '@/components/state/randomRecipeSlice';
 import recipeReducer from '@/components/state/recipeSlice';
-import recipeModalReducer from '@/components/state/recipeModal';
 import tagReducer from '@/components/state/tagSlice';
 import { render, RenderResult } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -13,7 +12,6 @@ export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
     reducer: {
       randomRecipe: randomRecipeReducer,
       recipe: recipeReducer,
-      recipeModal: recipeModalReducer,
       tag: tagReducer
     },
     preloadedState: {
@@ -26,9 +24,6 @@ export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
         ingredients: [],
         recipes: [],
         queryParams: ''
-      },
-      recipeModal: {
-        isOpen: false
       },
       tag: {
         tags: []

@@ -1,32 +1,26 @@
-import { RootState } from '@/store';
 import { Modal, Text } from 'components-library';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsOpen } from '../state/recipeModal';
 import { RecipeButton } from './components';
 import { sanitizeHtml } from '@/utils/sanitizeHtml';
 
-const RecipeModal = ({ instructions }: { instructions: string }) => {
-  const dispatch = useDispatch();
-  const isModalOpen = useSelector(
-    (state: RootState) => state.recipeModal.isOpen
-  );
+interface RecipeModalProps {
+  instructions: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-  const handleClose = () => dispatch(setIsOpen(false));
-
-  return (
-    <Modal
-      isOpen={isModalOpen}
-      onClose={handleClose}
-      className='bg-transparent'
-      contentClassName='flex justify-center'
-    >
-      <Text
-        className='pb-4'
-        dangerouslySetInnerHTML={{ __html: sanitizeHtml(instructions) }}
-      />
-      <RecipeButton onClick={handleClose}>Close</RecipeButton>
-    </Modal>
-  );
-};
+const RecipeModal = ({ instructions, isOpen, onClose }: RecipeModalProps) => (
+  <Modal
+    isOpen={isOpen}
+    onClose={onClose}
+    className='bg-transparent'
+    contentClassName='flex justify-center'
+  >
+    <Text
+      className='pb-4'
+      dangerouslySetInnerHTML={{ __html: sanitizeHtml(instructions) }}
+    />
+    <RecipeButton onClick={onClose}>Close</RecipeButton>
+  </Modal>
+);
 
 export default RecipeModal;
