@@ -46,31 +46,42 @@ describe('Hero', () => {
   it('should render the titles correctly', () => {
     const hero = screen.getByTestId('hero');
     const h1Element = within(hero).getByRole('heading', { level: 1 });
-    const h2Element = within(hero).getByRole('heading', { level: 2 });
-
-    expect(h1Element.textContent).toEqual("What's In Your Fridge?");
-    expect(h2Element.textContent).toEqual(
+    const subtitle = within(hero).getByText(
       'Unleash culinary creativity with what you have!'
     );
+
+    expect(h1Element.textContent).toEqual("What's In Your Fridge?");
+    expect(subtitle.tagName).toBe('P');
   });
   describe('tags creation and deletion', () => {
     it('should create a tag on pressing Enter key', async () => {
       await setNewTag();
-      const tag = screen.getByTestId('tag-span');
+      const tag = screen.getByTestId('tag-item');
 
       expect(tag).toBeInTheDocument();
       expect(tag.textContent).toEqual('apple');
     });
     it('should delete the tag when the delete icon is clicked', async () => {
       await setNewTag();
-      const tag = screen.getByTestId('tag-span');
+      const tag = screen.getByTestId('tag-item');
       const deleteIcon = within(tag).getByTestId('delete-icon');
 
       await userEvent.click(deleteIcon);
 
-      const tagContainer = screen.getByTestId('tag-span-container');
+      const tagContainer = screen.getByTestId('tag-list');
 
       expect(tagContainer.children.length).toBe(0);
+    });
+    it('should expose tag removal as a keyboard-accessible button', async () => {
+      await setNewTag();
+      const removeButton = screen.getByRole('button', {
+        name: 'Remove apple'
+      });
+
+      removeButton.focus();
+      await userEvent.keyboard('[Enter]');
+
+      expect(removeButton).not.toBeInTheDocument();
     });
   });
   describe('buildQueryParams', () => {

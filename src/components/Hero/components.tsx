@@ -1,4 +1,4 @@
-import { Box, Text, Input, Button, Stack } from 'components-library';
+import { Text, Input, Button, Stack } from 'components-library';
 
 export const HeroContainer = ({ children }: { children: React.ReactNode }) => (
   <Stack
@@ -17,7 +17,7 @@ export const HeroTitle = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const HeroSubtitle = ({ children }: { children: React.ReactNode }) => (
-  <Text as='h2' className='mb-4 text-center font-semibold text-xl'>
+  <Text as='p' className='mb-4 text-center font-semibold text-xl'>
     {children}
   </Text>
 );
@@ -34,27 +34,26 @@ export const HeroButton = (props: React.ComponentProps<typeof Button>) => (
   <Button
     {...props}
     className='w-full max-w-xs lg:w-37.5! bg-primary hover:bg-accent-dark shadow-2xl'
-    aria-label='Discover recipes'
   />
 );
 
 export const TagContainer = ({ children }: { children: React.ReactNode }) => (
-  <Box
+  <ul
     id='tags'
     className='max-w-200 min-h-10 max-h-50 flex flex-wrap gap-2'
-    data-testid='tag-span-container'
-    role='list'
+    data-testid='tag-list'
   >
     {children}
-  </Box>
+  </ul>
 );
 
-export const TagSpan = (props: React.ComponentProps<'span'>) => (
-  <span
+export const TagItem = (props: React.ComponentProps<'li'>) => <li {...props} />;
+
+export const TagRemoveButton = (props: React.ComponentProps<'button'>) => (
+  <button
     {...props}
-    className='p-2 bg-accent-light text-primary hover:bg-accent-medium shadow-2xl hover:ring-2 hover:ring-[#50A57A] flex items-center rounded-2xl cursor-pointer'
-    role='listitem'
-    tabIndex={0}
+    type='button'
+    className='p-2 bg-accent-light text-primary hover:bg-accent-medium shadow-2xl hover:ring-2 hover:ring-[#50A57A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#50A57A] flex items-center rounded-2xl cursor-pointer'
   />
 );
 
