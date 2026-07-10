@@ -4,10 +4,9 @@ import RecipeList from './RecipeList';
 import { useAppSelector } from '@/hooks';
 
 const PopularRecipes = () => {
-  const { recipes } = useAppSelector((state) => state.recipe);
-  const randomRecipes = useAppSelector((state) => state.randomRecipe.recipes);
+  const viewMode = useAppSelector((state) => state.recipe.viewMode);
 
-  if ([recipes, randomRecipes].some((arr) => arr.length > 0)) return null;
+  if (viewMode !== 'popular') return null;
 
   return (
     <>

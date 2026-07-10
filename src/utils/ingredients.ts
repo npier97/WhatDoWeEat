@@ -1,17 +1,14 @@
 export const buildIngredientsList = (
   tags: string[],
-  ingredients: string[],
   inputValue: string
-): string[] => {
-  const filteredTags = tags.filter((tag) => !ingredients.includes(tag));
-  const typedIngredient =
-    inputValue && !ingredients.includes(inputValue) ? inputValue : '';
+): string[] =>
+  [inputValue, ...tags]
+    .map((ingredient) => ingredient.trim().toLowerCase())
+    .filter((ingredient) => ingredient.length > 0)
+    .filter(
+      (ingredient, index, ingredients) =>
+        ingredients.indexOf(ingredient) === index
+    );
 
-  return [typedIngredient, ...filteredTags].filter(Boolean);
-};
-
-export const buildQueryParams = (
-  tags: string[],
-  ingredients: string[],
-  inputValue: string
-): string => buildIngredientsList(tags, ingredients, inputValue).join(',');
+export const buildQueryParams = (tags: string[], inputValue: string): string =>
+  buildIngredientsList(tags, inputValue).join(',');

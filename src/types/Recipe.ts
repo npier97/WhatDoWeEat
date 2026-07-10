@@ -1,4 +1,6 @@
-export interface RecipeProps {
+import type { Ingredient } from './Ingredient';
+
+export interface Recipe {
   id: number;
   title: string;
   summary: string;
@@ -6,25 +8,12 @@ export interface RecipeProps {
   image?: string;
   likes?: string;
   missedIngredientCount?: number;
-  missedIngredients?: IngredientProps[];
+  missedIngredients?: Ingredient[];
   usedIngredientCount?: number;
-  usedIngredients?: IngredientProps[];
+  usedIngredients?: Ingredient[];
 }
 
-export type IngredientProps = {
-  aisle: string;
-  amount: number;
-  id: number;
-  image: string;
-  name: string;
-  original: string;
-  originalName: string;
-  unit: string;
-  unitLong: string;
-  unitShort: string;
-};
-
-export interface RecipeContainerProps {
-  children: React.ReactNode;
-  index: number;
+export interface RecipeDetail extends Recipe {
+  instructions: string;
+  extendedIngredients?: Ingredient[];
 }

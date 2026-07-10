@@ -1,34 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RecipeProps } from '@/types/Recipe';
+
+export type RecipeViewMode = 'popular' | 'searched' | 'random';
 
 export interface RecipeState {
-  ingredients: string[];
-  recipes: RecipeProps[];
   queryParams: string;
+  viewMode: RecipeViewMode;
 }
 
 const initialState: RecipeState = {
-  ingredients: [],
-  recipes: [],
-  queryParams: ''
+  queryParams: '',
+  viewMode: 'popular'
 };
 
 const recipeSlice = createSlice({
   name: 'recipe',
   initialState,
   reducers: {
-    setIngredients: (state, action: PayloadAction<string[]>) => {
-      state.ingredients = action.payload;
-    },
-    setRecipes: (state, action: PayloadAction<RecipeProps[]>) => {
-      state.recipes = action.payload;
-    },
     setQueryParams: (state, action: PayloadAction<string>) => {
       state.queryParams = action.payload;
+    },
+    setViewMode: (state, action: PayloadAction<RecipeViewMode>) => {
+      state.viewMode = action.payload;
     }
   }
 });
 
-export const { setIngredients, setRecipes, setQueryParams } =
-  recipeSlice.actions;
+export const { setQueryParams, setViewMode } = recipeSlice.actions;
 export default recipeSlice.reducer;

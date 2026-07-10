@@ -1,6 +1,10 @@
-import { RecipeContainerProps } from '@/types/Recipe';
 import { sanitizeHtml } from '@/utils/sanitizeHtml';
 import { Button, Stack, Text } from 'components-library';
+
+interface RecipeContainerProps {
+  children: React.ReactNode;
+  index: number;
+}
 
 export const RecipeSubtitle = ({ children }: { children: React.ReactNode }) => (
   <Text as='h2' className='mb-15 font-bold text-xl'>

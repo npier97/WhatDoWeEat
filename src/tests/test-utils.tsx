@@ -1,29 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
-import randomRecipeReducer from '@/components/state/randomRecipeSlice';
 import recipeReducer from '@/components/state/recipeSlice';
 import tagReducer from '@/components/state/tagSlice';
 import { render, RenderResult } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { RootState } from '@/store';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryKey
+} from '@tanstack/react-query';
 
 export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
   return configureStore({
     reducer: {
-      randomRecipe: randomRecipeReducer,
       recipe: recipeReducer,
       tag: tagReducer
     },
     preloadedState: {
-      randomRecipe: {
-        error: '',
-        recipes: []
-      },
       recipe: {
-        error: '',
-        ingredients: [],
-        recipes: [],
-        queryParams: ''
+        queryParams: '',
+        viewMode: 'popular' as const
       },
       tag: {
         tags: []
@@ -35,10 +31,21 @@ export const createTestStore = (preloadedState: Partial<RootState> = {}) => {
 
 export const renderWithProviders = (
   ui: React.ReactNode,
-  { preloadedState = {} }: { preloadedState?: Partial<RootState> } = {}
+  {
+    preloadedState = {},
+    queryData = []
+  }: {
+    preloadedState?: Partial<RootState>;
+    queryData?: { queryKey: QueryKey; data: unknown }[];
+  } = {}
 ): RenderResult => {
   const store = createTestStore(preloadedState);
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false, staleTime: Infinity } }
+  });
+  queryData.forEach(({ queryKey, data }) => {
+    queryClient.setQueryData(queryKey, data);
+  });
   return render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>

@@ -1,11 +1,34 @@
 import { Box } from 'components-library';
 import RecipeList from './RecipeList';
+import { useQuery } from '@tanstack/react-query';
+import { fetchRandomRecipes } from '@/api/recipes';
+import RecipeResultsState from './RecipeResultsState';
 import { useAppSelector } from '@/hooks';
 
 const RandomRecipes = () => {
-  const { recipes } = useAppSelector((state) => state.randomRecipe);
+  const viewMode = useAppSelector((state) => state.recipe.viewMode);
+  const {
+    data: recipes,
+    isFetching,
+    isError,
+    isSuccess
+  } = useQuery({
+    queryKey: ['randomRecipes'],
+    queryFn: fetchRandomRecipes,
+    enabled: false
+  });
 
-  if (!recipes?.length) return null;
+  if (viewMode !== 'random') return null;
+
+  if (isFetching || isError || !recipes?.length) {
+    return (
+      <RecipeResultsState
+        isFetching={isFetching}
+        isError={isError}
+        isEmpty={isSuccess && recipes.length === 0}
+      />
+    );
+  }
 
   return (
     <Box

@@ -2,26 +2,24 @@ import { screen, within } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import SuggestedRecipes from '.';
 import { renderWithProviders } from '@/tests/test-utils';
-import { vi } from 'vitest';
-import * as ReactQuery from '@tanstack/react-query';
 import { userEvent } from '@testing-library/user-event';
 
 describe('Suggested recipes', () => {
-  const defaultRecipeState = {
+  const recipes = [
+    {
+      id: 1,
+      title: 'Apple Pie',
+      summary: 'Some summary',
+      instructions: 'Some instructions about the recipe'
+    }
+  ];
+  const searchedRecipeState = {
     recipe: {
-      error: '',
-      ingredients: [],
-      recipes: [
-        {
-          id: 1,
-          title: 'Apple Pie',
-          summary: 'Some summary',
-          instructions: 'Some instructions about the recipe'
-        }
-      ],
-      queryParams: ''
+      queryParams: 'apple',
+      viewMode: 'searched' as const
     }
   };
+  const searchedQuery = { queryKey: ['recipes', 'apple'], data: recipes };
 
   it('should render the current popular recipes by default', () => {
     renderWithProviders(<SuggestedRecipes />);
@@ -34,7 +32,8 @@ describe('Suggested recipes', () => {
   });
   it('should render the searched recipes when searching for recipes', () => {
     renderWithProviders(<SuggestedRecipes />, {
-      preloadedState: defaultRecipeState
+      preloadedState: searchedRecipeState,
+      queryData: [searchedQuery]
     });
 
     const searchedRecipes = screen.getByTestId('searched-recipes');
@@ -43,7 +42,8 @@ describe('Suggested recipes', () => {
   });
   it('should open and close a recipe modal using local state', async () => {
     renderWithProviders(<SuggestedRecipes />, {
-      preloadedState: defaultRecipeState
+      preloadedState: searchedRecipeState,
+      queryData: [searchedQuery]
     });
 
     await userEvent.click(screen.getByRole('button', { name: 'See summary' }));
@@ -55,29 +55,18 @@ describe('Suggested recipes', () => {
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
-  it.skip('should render the spinner when searching for recipes', () => {
-    vi.spyOn(ReactQuery, 'useIsFetching').mockReturnValue(1);
-    renderWithProviders(<SuggestedRecipes />, {
-      preloadedState: {
-        recipe: {
-          ...defaultRecipeState.recipe
-        }
-      }
-    });
-
-    const suggestedRecipes = screen.getByTestId('suggested-recipes');
-    const spinner = within(suggestedRecipes).getByTestId(
-      'suggested-recipes-spinner'
-    );
-
-    expect(spinner).toBeInTheDocument();
-    vi.restoreAllMocks();
-  });
   it('should render the generated random recipes when clicking on the button', () => {
     renderWithProviders(<SuggestedRecipes />, {
       preloadedState: {
-        randomRecipe: {
-          recipes: [
+        recipe: {
+          queryParams: '',
+          viewMode: 'random'
+        }
+      },
+      queryData: [
+        {
+          queryKey: ['randomRecipes'],
+          data: [
             {
               id: 1,
               title: 'Random Salad',
@@ -86,7 +75,7 @@ describe('Suggested recipes', () => {
             }
           ]
         }
-      }
+      ]
     });
 
     const suggestedRecipes = screen.getByTestId('suggested-recipes');

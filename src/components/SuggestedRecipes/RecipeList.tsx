@@ -1,7 +1,5 @@
-import { RecipeListProps } from '@/types/RecipeList';
+import type { Recipe } from '@/types/Recipe';
 import { useState } from 'react';
-import { Box } from 'components-library';
-import { Spinner } from '@/components/Spinner';
 import {
   DescriptionContainer,
   DescriptionText,
@@ -10,10 +8,12 @@ import {
   RecipeContainer
 } from './components';
 import RecipeModal from './RecipeModal';
-import { useIsFetching } from '@tanstack/react-query';
+
+interface RecipeListProps {
+  recipes: Recipe[];
+}
 
 const RecipeList = ({ recipes }: RecipeListProps) => {
-  const isFetching = useIsFetching({ queryKey: ['recipes'] });
   const [selectedRecipe, setSelectedRecipe] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const placeholderImage = 'images/placeholder.webp';
@@ -24,16 +24,6 @@ const RecipeList = ({ recipes }: RecipeListProps) => {
   };
 
   const handleModalClose = () => setIsModalOpen(false);
-
-  if (isFetching > 0)
-    return (
-      <Box
-        className='h-95 flex items-center gap-8'
-        data-testid='suggested-recipes-spinner'
-      >
-        <Spinner />
-      </Box>
-    );
 
   return (
     <>

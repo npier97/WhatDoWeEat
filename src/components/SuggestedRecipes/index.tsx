@@ -6,7 +6,7 @@ import RandomRecipes from './RandomRecipes';
 
 const SuggestedRecipes = () => (
   <Stack
-    className='pt-20 pb-20 bg-gray-50 items-center'
+    className='min-h-150 pt-20 pb-20 bg-gray-50 items-center'
     data-testid='suggested-recipes'
   >
     <RecipeSubtitle>Suggested Recipes</RecipeSubtitle>

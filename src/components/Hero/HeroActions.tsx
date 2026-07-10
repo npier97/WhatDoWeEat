@@ -1,35 +1,25 @@
 import { Box } from 'components-library';
 import { HeroButton, HeroInput } from './components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { preventSpecialCharacters } from '@/utils/string';
 import { addTag, clearTags } from '@/components/state/tagSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import RandomRecipeGenerator from './RandomRecipeGenerator';
-import {
-  setIngredients,
-  setQueryParams,
-  setRecipes
-} from '@/components/state/recipeSlice';
-import { setRandomRecipes } from '@/components/state/randomRecipeSlice';
-import { useQuery } from '@tanstack/react-query';
-import { fetchRecipesByIngredients } from '@/api/recipes';
-import { buildIngredientsList, buildQueryParams } from '@/utils/ingredients';
+import { setQueryParams, setViewMode } from '@/components/state/recipeSlice';
+import { useIsFetching } from '@tanstack/react-query';
+import { buildQueryParams } from '@/utils/ingredients';
 import HeroTag from './HeroTag';
 
 const HeroActions = () => {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>('');
-  const ingredients = useAppSelector((state) => state.recipe.ingredients);
   const queryParams = useAppSelector((state) => state.recipe.queryParams);
   const tags = useAppSelector((state) => state.tag.tags);
   const [hasAttemptedEmptySearch, setHasAttemptedEmptySearch] =
     useState<boolean>(false);
 
-  const { data: recipes, isFetching } = useQuery({
-    queryKey: ['recipes', queryParams],
-    queryFn: () => fetchRecipesByIngredients(queryParams),
-    enabled: Boolean(queryParams)
-  });
+  const isFetching =
+    useIsFetching({ queryKey: ['recipes', queryParams], exact: true }) > 0;
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     preventSpecialCharacters(event);
@@ -52,22 +42,11 @@ const HeroActions = () => {
     }
 
     setHasAttemptedEmptySearch(false);
-    dispatch(setQueryParams(buildQueryParams(tags, ingredients, inputValue)));
-    dispatch(
-      setIngredients(buildIngredientsList(tags, ingredients, inputValue))
-    );
+    dispatch(setQueryParams(buildQueryParams(tags, inputValue)));
+    dispatch(setViewMode('searched'));
     dispatch(clearTags());
-    dispatch(setRandomRecipes([]));
     setInputValue('');
   };
-
-  useEffect(() => {
-    if (recipes) {
-      dispatch(setRecipes(recipes));
-      dispatch(setIngredients([]));
-      dispatch(setQueryParams(''));
-    }
-  }, [recipes, dispatch]);
 
   return (
     <>

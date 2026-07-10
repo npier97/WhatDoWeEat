@@ -85,10 +85,14 @@ describe('Hero', () => {
     });
   });
   describe('buildQueryParams', () => {
-    it('excludes an already-selected ingredient without leaving a trailing comma', () => {
-      expect(buildQueryParams(['onion'], ['onion'], '')).toBe('');
-      expect(buildQueryParams(['onion', 'garlic'], ['onion'], '')).toBe(
-        'garlic'
+    it('builds the same non-empty query when an ingredient is searched again', () => {
+      expect(buildQueryParams([], 'onion')).toBe('onion');
+      expect(buildQueryParams([], 'onion')).toBe('onion');
+    });
+
+    it('normalizes ingredients to lowercase and removes duplicates', () => {
+      expect(buildQueryParams(['onion', 'Garlic'], 'ONION')).toBe(
+        'onion,garlic'
       );
     });
   });
