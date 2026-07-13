@@ -26,7 +26,7 @@ export const HeroInput = (props: React.ComponentProps<typeof Input>) => (
   <Input
     {...props}
     type='text'
-    className='max-w-80 min-w-20 bg-white text-black outline-none shadow-2xl'
+    className='max-w-80 min-w-20 bg-white text-black shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#50A57A]'
   />
 );
 

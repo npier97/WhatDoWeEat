@@ -7,8 +7,10 @@ import SuggestedRecipes from './components/SuggestedRecipes';
 const App = () => (
   <>
     <Header />
-    <Hero />
-    <SuggestedRecipes />
+    <main>
+      <Hero />
+      <SuggestedRecipes />
+    </main>
     <Footer />
   </>
 );
