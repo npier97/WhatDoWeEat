@@ -10,7 +10,7 @@
       "@/*": ["./src/*"],
       "components-library": ["./node_modules/components-library"]
     },
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
